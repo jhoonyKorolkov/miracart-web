@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const iconsDir = path.resolve(__dirname, '../src/icons');
-const outputFile = path.resolve(__dirname, '../partials/svg-sprite.hbs');
+const outputFile = path.resolve(__dirname, '../public/images/sprite.svg');
 
 console.log('🎨 Generating SVG Sprite...\n');
 
@@ -51,7 +51,7 @@ if (svgFiles.length === 0) {
 }
 
 // Генерируем спрайт
-let spriteContent = `<svg id="svg-sprite" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">\n`;
+let spriteContent = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">\n`;
 
 svgFiles.forEach((file) => {
   const filePath = path.join(iconsDir, file);
