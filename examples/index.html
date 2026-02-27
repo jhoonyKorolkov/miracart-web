@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Примеры и Документация</title>
+    <link rel="stylesheet" href="/src/styles/app.scss" />
+    <style>
+      body {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .example-card {
+        padding: 32px;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        background: white;
+      }
+      .example-card:hover {
+        border-color: #42b883;
+        box-shadow: 0 10px 30px rgba(66, 184, 131, 0.1);
+        transform: translateY(-4px);
+      }
+      .example-card h3 {
+        margin-top: 0;
+        color: #42b883;
+        font-size: 24px;
+      }
+      .example-card p {
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .example-card a {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #42b883;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+      .example-card a:hover {
+        background: #359268;
+      }
+      .docs-card {
+        background: #f8f9fa;
+        border-color: #adb5bd;
+      }
+      .docs-card:hover {
+        border-color: #6c757d;
+      }
+      .docs-card h3 {
+        color: #495057;
+      }
+      .docs-card a {
+        background: #6c757d;
+      }
+      .docs-card a:hover {
+        background: #5a6268;
+      }
+      .important-note {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 32px 0;
+      }
+      .important-note strong {
+        color: #856404;
+        font-size: 18px;
+        display: block;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📚 Примеры и Документация</h1>
+      <p style="font-size: 18px; color: #6c757d; margin-top: 8px">
+        Коллекция примеров компонентов и полная документация системы дизайна
+      </p>
+    </header>
+
+    <div class="important-note">
+      <strong>⚠️ Важно:</strong>
+      <p style="margin: 0; color: #856404">
+        Эта папка содержит только примеры и документацию. Для реальной
+        разработки используйте <code>/pages</code> и создавайте свои страницы.
+        Примеры можно использовать как референс и копировать нужные части кода.
+      </p>
+    </div>
+
+    <main>
+      <section>
+        <h2>🎨 Примеры страниц</h2>
+        <div class="examples-grid">
+          <div class="example-card">
+            <h3>🛍️ Магазин</h3>
+            <p>
+              Полный пример e-commerce страницы с использованием Grid миксинов,
+              карточками товаров, фильтрами и адаптивной версткой.
+            </p>
+            <p><strong>Демонстрирует:</strong></p>
+            <ul>
+              <li>Grid системы (grid-auto-fit, grid-sidebar)</li>
+              <li>Карточки товаров с hover эффектами</li>
+              <li>Адаптивный layout</li>
+              <li>Spacing и color системы</li>
+            </ul>
+            <a href="/examples/shop.html">Открыть пример →</a>
+          </div>
+
+          <div class="example-card">
+            <h3>📝 Формы</h3>
+            <p>
+              Примеры различных типов форм, включая инновационный Floating Label
+              паттерн для современного UX.
+            </p>
+            <p><strong>Демонстрирует:</strong></p>
+            <ul>
+              <li>Floating label inputs</li>
+              <li>Обычные формы с валидацией</li>
+              <li>Различные типы полей (email, tel, number)</li>
+              <li>Состояния (error, disabled, focus)</li>
+            </ul>
+            <a href="/examples/forms.html">Открыть пример →</a>
+          </div>
+
+          <div class="example-card">
+            <h3>🎯 Utility классы</h3>
+            <p>
+              Интерактивная демонстрация всех 300+ utility классов с живыми
+              примерами и кодом.
+            </p>
+            <p><strong>Демонстрирует:</strong></p>
+            <ul>
+              <li>Display, Flex, Grid utilities</li>
+              <li>Spacing (168 классов)</li>
+              <li>Typography, Colors, Borders</li>
+              <li>Адаптивные утилиты</li>
+            </ul>
+            <a href="/examples/utilities.html">Открыть пример →</a>
+          </div>
+
+          <div class="example-card">
+            <h3>🪟 Модальные окна</h3>
+            <p>
+              Примеры модальных окон разных размеров с анимацией, оверлеем и
+              полной функциональностью.
+            </p>
+            <p><strong>Демонстрирует:</strong></p>
+            <ul>
+              <li>Различные размеры (small, normal, large)</li>
+              <li>Плавная анимация появления/скрытия</li>
+              <li>Закрытие по оверлею и Escape</li>
+              <li>Блокировка скролла body</li>
+              <li>Адаптивный дизайн</li>
+            </ul>
+            <a href="/examples/modal.html">Открыть пример →</a>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top: 60px">
+        <h2>📖 Документация</h2>
+        <div class="examples-grid">
+          <div class="example-card docs-card">
+            <h3>🎨 Система дизайна</h3>
+            <p>
+              Полная документация SCSS архитектуры, переменных, функций и
+              миксинов.
+            </p>
+            <a href="/examples/viewer.html?file=docs/STYLES_AUDIT_REPORT.md"
+              >Аудит системы →</a
+            >
+          </div>
+
+          <div class="example-card docs-card">
+            <h3>💻 SCSS Сниппеты</h3>
+            <p>55+ готовых сниппетов для VS Code с префиксами и примерами.</p>
+            <a
+              href="/examples/viewer.html?file=docs/SCSS_SNIPPETS_CHEATSHEET.md"
+              >Открыть шпаргалку →</a
+            >
+          </div>
+
+          <div class="example-card docs-card">
+            <h3>🏷️ HTML Сниппеты</h3>
+            <p>35+ HTML сниппетов для быстрой разработки компонентов.</p>
+            <a
+              href="/examples/viewer.html?file=docs/HTML_SNIPPETS_CHEATSHEET.md"
+              >Открыть шпаргалку →</a
+            >
+          </div>
+
+          <div class="example-card docs-card">
+            <h3>📝 Floating Inputs</h3>
+            <p>
+              Подробная документация по использованию Floating Label паттерна.
+            </p>
+            <a href="/examples/viewer.html?file=docs/FLOATING_INPUTS.md"
+              >Инструкция →</a
+            >
+          </div>
+
+          <div class="example-card docs-card">
+            <h3>🎯 Utility Guide</h3>
+            <p>Быстрый справочник по всем utility классам с примерами.</p>
+            <a href="/examples/viewer.html?file=docs/UTILITIES_GUIDE.md"
+              >Справочник →</a
+            >
+          </div>
+
+          <div class="example-card docs-card">
+            <h3>📚 README</h3>
+            <p>Общая информация о проекте, установке и использовании.</p>
+            <a href="/examples/viewer.html?file=docs/README.md">Читать →</a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        style="
+          margin-top: 60px;
+          padding: 32px;
+          background: #f8f9fa;
+          border-radius: 12px;
+        "
+      >
+        <h2>🚀 Быстрый старт для разработки</h2>
+        <ol style="line-height: 1.8; color: #495057">
+          <li>
+            <strong>Создайте свои страницы</strong> в папке <code>/pages/</code>
+          </li>
+          <li>
+            <strong>Добавьте их в Vite config:</strong>
+            <pre
+              style="
+                background: white;
+                padding: 16px;
+                border-radius: 6px;
+                overflow-x: auto;
+              "
+            ><code>// vite.config.ts
+rollupOptions: {
+  input: {
+    index: path.resolve(__dirname, 'index.html'),
+    mypage: path.resolve(__dirname, 'pages/mypage.html'),
+  }
+}</code></pre>
+          </li>
+          <li>
+            <strong>Используйте систему:</strong> Копируйте примеры из
+            <code>/examples/</code>, используйте миксины из
+            <code>/src/styles/abstracts/</code>
+          </li>
+          <li>
+            <strong>Запустите dev сервер:</strong> <code>npm run dev</code>
+          </li>
+        </ol>
+      </section>
+
+      <footer
+        style="
+          margin-top: 60px;
+          padding-top: 32px;
+          border-top: 2px solid #dee2e6;
+          text-align: center;
+          color: #6c757d;
+        "
+      >
+        <p>
+          <strong>Frontend Template</strong> — Vite + Vue Islands + SCSS +
+          Handlebars
+        </p>
+        <p style="margin-top: 8px">
+          <a
+            href="/"
+            style="color: #42b883; text-decoration: none; font-weight: 600"
+            >← Вернуться на главную</a
+          >
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+// ============================================
+// ГЛАВНЫЙ ФАЙЛ СТИЛЕЙ
+// ============================================
+
+// 1. Переменные и настройки
+@use './abstracts/variables' as *;
+
+// 2. Функции (должны быть после переменных)
+@use './abstracts/functions' as *;
+
+// 3. Миксины (используют переменные и функции)
+@use './abstracts/mixins' as *;
+
+// 3.1. Компонент-миксины (для переиспользования в компонентах)
+@use './abstracts/component-mixins' as *;
+
+// 4. Базовые стили
+@use './base/reset';
+@use './base/fonts';
+@use './base/base';
+
+// 5. Компоненты
+@use './components/components';
+@use './components/sections';
+
+// 6. Утилиты (генерируют классы)
+// @use './utilities/utilities';
+
+// 7. Анимации
+@use './animations/animations';
+
+// 8. Примеры (только для dev режима, можно закомментировать в production)
+// @use './examples/shop';

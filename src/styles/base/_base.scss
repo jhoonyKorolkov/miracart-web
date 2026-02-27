@@ -1,0 +1,326 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/component-mixins' as *;
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Ширина равна КОНТЕНТУ .wrap без учёта внутренних паддингов */
+  width: min(1140px, calc(100vw - 80px));
+  pointer-events: none;
+  z-index: 0;
+  /* Толщина линии var(--line-w) и зазор var(--line-gap) настраиваемы */
+  --line-w: 1px;
+  --line-gap: 193px;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(31, 30, 30, 0.06) 0 var(--line-w),
+    transparent var(--line-w) calc(var(--line-w) + var(--line-gap))
+  );
+  @include respond-max(tablet) {
+    --line-gap: 64px;
+    // width: min(1140px, calc(100vw - 40px));
+  }
+}
+
+/* На планшете паддинги .wrap = 20px, учитываем это в ширине полос */
+@include respond-max(tablet) {
+  body::before {
+    /* На планшете у .wrap паддинги по 20px — вычитаем только их, без расширения до 1180 */
+    // width: min(1140px, calc(100vw - 40px));
+    /* Сдвигаем линии на 20px вправо, чтобы первая линия начиналась от края контента */
+    transform: translateX(calc(-50% + -20px));
+  }
+}
+
+// ============================================
+// ТИПОГРАФИЯ
+// ============================================
+
+h1,
+.h1 {
+  @include type(48, 58);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(6);
+  color: color('dark');
+
+  @include respond-max('md') {
+    @include type(36, 43);
+    margin-bottom: spacing(4);
+  }
+
+  @include respond-max('sm') {
+    @include type(28, 36);
+    margin-bottom: spacing(3);
+  }
+}
+
+h2,
+.h2 {
+  @include type(36, 47);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(5);
+  margin-top: spacing(10);
+  color: color('dark');
+
+  @include respond-max('md') {
+    @include type(28, 36);
+    margin-bottom: spacing(4);
+    margin-top: spacing(8);
+  }
+
+  @include respond-max('sm') {
+    @include type(24, 34);
+    margin-bottom: spacing(3);
+    margin-top: spacing(6);
+  }
+}
+
+h3,
+.h3 {
+  @include type(28, 39);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(4);
+  margin-top: spacing(8);
+  color: color('primary');
+
+  @include respond-max('md') {
+    @include type(22, 31);
+    margin-bottom: spacing(3);
+    margin-top: spacing(6);
+  }
+
+  @include respond-max('sm') {
+    @include type(20, 28);
+  }
+}
+
+h4,
+.h4 {
+  @include type(24, 34);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(3);
+  margin-top: spacing(6);
+  color: color('secondary');
+
+  @include respond-max('md') {
+    @include type(20, 28);
+  }
+
+  @include respond-max('sm') {
+    @include type(18, 27);
+  }
+}
+
+h5,
+.h5 {
+  @include type(20, 30);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(2);
+  margin-top: spacing(4);
+  color: color('secondary');
+
+  @include respond-max('sm') {
+    @include type(16, 24);
+  }
+}
+
+h6,
+.h6 {
+  @include type(16, 24);
+  font-weight: font-weight('bold');
+  margin-bottom: spacing(2);
+  margin-top: spacing(3);
+  color: color('secondary');
+  text-transform: uppercase;
+  letter-spacing: px2rem(1);
+}
+
+p,
+.text {
+  margin-bottom: spacing(4);
+  line-height: line-height('relaxed');
+  color: color('gray', 700);
+  font-size: font-size('base');
+
+  @include respond-max('sm') {
+    margin-bottom: spacing(3);
+  }
+}
+
+a {
+  color: color('primary');
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: darken-color(color('primary'), 10%);
+    text-decoration: underline;
+  }
+}
+
+// Списки
+ul,
+ol {
+  margin: spacing(4) 0;
+  padding-left: spacing(6);
+
+  li {
+    margin-bottom: spacing(2);
+    line-height: line-height('relaxed');
+    color: color('gray', 700);
+  }
+
+  @include respond-max('sm') {
+    padding-left: spacing(5);
+  }
+}
+
+// ============================================
+// КНОПКИ
+// ============================================
+
+.btn {
+  @include btn(color('primary'), color('white'));
+  padding: spacing(3) spacing(6);
+  font-size: font-size('base');
+  font-weight: font-weight('medium');
+  border-radius: radius('md');
+  transition: all 0.2s ease;
+
+  &--small {
+    padding: spacing(2) spacing(4);
+    font-size: font-size('sm');
+  }
+
+  &--large {
+    padding: spacing(4) spacing(8);
+    font-size: font-size('lg');
+  }
+
+  &--secondary {
+    @include btn(color('secondary'), color('white'));
+  }
+
+  &--success {
+    @include btn(color('success'), color('white'));
+  }
+
+  &--danger {
+    @include btn(color('danger'), color('white'));
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid color('primary');
+    color: color('primary');
+
+    &:hover {
+      background: color('primary');
+      color: color('white');
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+// ============================================
+// LAYOUT КОМПОНЕНТЫ
+// ============================================
+
+.container {
+  padding: 0 spacing(6);
+  max-width: px2rem(1140);
+  margin: 0 auto;
+  box-sizing: content-box;
+
+  @include respond-max('lg') {
+    max-width: 100%;
+    padding: 0 spacing(5);
+  }
+
+  @include respond-max('sm') {
+    padding: 0 spacing(4);
+  }
+
+  &--fluid {
+    max-width: 100%;
+  }
+
+  &--narrow {
+    max-width: px2rem(800);
+  }
+}
+
+// ============================================
+// ФОРМЫ
+// ============================================
+
+.form-group {
+  margin-bottom: spacing(5);
+
+  @include respond-max('sm') {
+    margin-bottom: spacing(4);
+  }
+}
+
+.form-label {
+  display: block;
+  margin-bottom: spacing(2);
+  font-weight: font-weight('medium');
+  font-size: font-size('sm');
+  color: color('gray', 700);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  @include input-base;
+  width: 100%;
+
+  // Убираем стрелки для number input
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    opacity: 0;
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+}
+
+.form-textarea {
+  min-height: px2rem(120);
+  resize: vertical;
+}
+
+.form-error {
+  display: block;
+  margin-top: spacing(2);
+  color: color('danger');
+  font-size: font-size('sm');
+}
+
+// Floating label input
+.input-floating-wrapper {
+  @include input-floating-wrapper;
+
+  input {
+    @include input-floating;
+  }
+
+  label {
+    @include input-floating-label;
+  }
+}
