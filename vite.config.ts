@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import handlebars from 'vite-plugin-handlebars';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { imagetools } from 'vite-imagetools';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -24,13 +23,6 @@ export default defineConfig({
       context: {
         year: new Date().getFullYear(),
       },
-    }),
-    // SVG спрайт из иконок
-    createSvgIconsPlugin({
-      iconDirs: [path.resolve(__dirname, 'src/icons')],
-      symbolId: 'icon-[name]',
-      inject: 'body-first',
-      customDomId: 'svg-sprite',
     }),
     // Оптимизация изображений (WebP, AVIF и т.д.)
     imagetools({

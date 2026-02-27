@@ -1,5 +1,3 @@
-import 'virtual:svg-icons-register';
-
 interface Island {
   mount: (el: HTMLElement) => void;
 }
@@ -7,6 +5,7 @@ interface Island {
 const islands = import.meta.glob<Island>('./islands/*.ts', { eager: true });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Монтируем Vue islands
   document.querySelectorAll<HTMLElement>('[data-vue-island]').forEach((el) => {
     const name = el.dataset.vueIsland;
     if (!name) return;
