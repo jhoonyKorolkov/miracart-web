@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    {{> head title="О проекте" description="Информация о шаблоне проекта"}}
+    {{> layout/head title="О проекте" description="Информация о шаблоне
+    проекта"}}
   </head>
   <body>
-    {{> header}}
+    {{> layout/header}}
     <main class="page">
       <h1 class="h1">О проекте</h1>
       <p class="text">
@@ -22,6 +23,6 @@
         <li>Handlebars - шаблоны HTML</li>
       </ul>
     </main>
-    {{> footer}} {{> scripts}}
+    {{> layout/footer}} {{> layout/scripts}}
   </body>
 </html>

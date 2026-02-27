@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Генерируем SVG спрайт перед коммитом
+npm run svg:generate
+
+# Добавляем обновленный спрайт в коммит (если он изменился)
+git add public/images/sprite.svg 2>/dev/null || true

@@ -1,0 +1,14 @@
+# Browsers that we support
+
+# Modern browsers with >0.2% market share
+> 0.2%
+# Last 2 versions of all browsers
+last 2 versions
+# Firefox ESR
+Firefox ESR
+# Not dead browsers (updated in last 24 months)
+not dead
+# Not IE 11
+not IE 11
+# Not Opera Mini (limited CSS support)
+not op_mini all

@@ -1,0 +1,36 @@
+// ============================================
+// ALERT COMPONENT
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+
+.alert {
+  padding: spacing(4);
+  border-radius: radius('md');
+  border-left: 4px solid;
+
+  &--success {
+    background: alpha(color('success'), 0.1);
+    border-color: color('success');
+    color: darken-color(color('success'), 20%);
+  }
+
+  &--danger {
+    background: alpha(color('danger'), 0.1);
+    border-color: color('danger');
+    color: darken-color(color('danger'), 20%);
+  }
+
+  &--warning {
+    background: alpha(color('warning'), 0.1);
+    border-color: color('warning');
+    color: darken-color(color('warning'), 30%);
+  }
+
+  &--info {
+    background: alpha(color('info'), 0.1);
+    border-color: color('info');
+    color: darken-color(color('info'), 20%);
+  }
+}

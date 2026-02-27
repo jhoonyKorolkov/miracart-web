@@ -86,6 +86,7 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@icons': path.resolve(__dirname, 'src/icons'),
       '@images': path.resolve(__dirname, 'src/assets/images'),
+      '@partials': path.resolve(__dirname, 'partials'),
     },
   },
   css: {
@@ -100,6 +101,7 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'esbuild',
+    cssMinify: 'lightningcss',
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, 'index.html'),

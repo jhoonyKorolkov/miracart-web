@@ -2,11 +2,12 @@
 <html lang="ru">
   <head>
     <!-- prettier-ignore -->
-    {{> head title="Главная" description="Шаблон фронтенд-проекта на Vite с Vue Islands, SCSS и Handlebars"}}
+    {{> layout/head title="Главная" description="Шаблон фронтенд-проекта на Vite с Vue Islands, SCSS и Handlebars"}}
   </head>
+
   <body>
-    {{> header}}
-    <main class="page">{{> materials}} {{> advantages}}</main>
-    {{> footer}} {{> scripts}}
+    {{> layout/header}}
+    <main class="page">{{> sections/materials}} {{> sections/advantages}}</main>
+    {{> layout/footer}} {{> layout/scripts}}
   </body>
 </html>

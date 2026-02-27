@@ -1,0 +1,159 @@
+// ============================================
+// СЕКЦИЯ С ПРЕИМУЩЕСТВАМИ
+// ============================================
+
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.advantages {
+  padding: spacing(20) 0;
+  background: linear-gradient(135deg, #3a271e 0%, #2d1f19 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 2px,
+      transparent 2px,
+      transparent 120px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @include respond-max('tablet') {
+    padding: 0;
+  }
+
+  &__container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 spacing(5);
+    position: relative;
+    z-index: 1;
+
+    @include respond-max('tablet') {
+      padding: 0 spacing(4);
+    }
+  }
+
+  &__title {
+    @include type(48, 58);
+    font-weight: font-weight('extrabold');
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: spacing(16);
+
+    @include respond-max('tablet') {
+      @include type(36, 44);
+      margin-bottom: spacing(12);
+    }
+  }
+
+  &__title-highlight {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      top: -4px;
+      bottom: -4px;
+      background: transparent;
+      border: 3px solid #ffb800;
+      border-radius: 50%;
+      transform: rotate(-5deg);
+      z-index: -1;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: spacing(8) spacing(6);
+
+    @include respond-max('tablet') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: spacing(6) spacing(4);
+    }
+  }
+
+  &__card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: spacing(4);
+    padding: spacing(8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    @include respond-max('tablet') {
+      padding: spacing(6);
+    }
+  }
+
+  &__icon-wrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin-bottom: spacing(5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon-emoji {
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__icon-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    opacity: 1;
+  }
+
+  &__card-title {
+    @include type(20, 28);
+    font-weight: font-weight('bold');
+    color: #ffffff;
+    margin-bottom: spacing(4);
+
+    @include respond-max('tablet') {
+      @include type(18, 26);
+      margin-bottom: spacing(3);
+    }
+  }
+
+  &__highlight {
+    color: #ffb800;
+    font-weight: font-weight('extrabold');
+  }
+
+  &__card-text {
+    @include type(14, 22);
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+}

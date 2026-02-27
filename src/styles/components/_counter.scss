@@ -1,0 +1,36 @@
+// ============================================
+// COUNTER COMPONENT
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+.counter {
+  @include flex-center;
+  gap: spacing(3);
+  padding: spacing(4);
+  border: 1px solid $color-border;
+  border-radius: radius('md');
+  background: color('gray', 100);
+  @include hover-shadow('sm');
+
+  &__value {
+    min-width: 40px;
+    text-align: center;
+    font-weight: font-weight('bold');
+    font-size: font-size('lg');
+    color: color('dark');
+  }
+
+  .btn {
+    @include size(32px);
+    @include transition(all);
+
+    &:hover {
+      background: color('primary');
+      color: white;
+      border-color: color('primary');
+    }
+  }
+}

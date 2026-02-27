@@ -1,8 +1,18 @@
-import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
 import { watch } from 'fs';
 import { fileURLToPath } from 'url';
+
+// Проверка наличия sharp
+try {
+  await import('sharp');
+} catch (error) {
+  console.error('❌ Ошибка: пакет "sharp" не установлен.');
+  console.error('📦 Установите его командой: npm install sharp');
+  process.exit(1);
+}
+
+const sharp = (await import('sharp')).default;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const imagesDir = path.resolve(__dirname, '../public/images');

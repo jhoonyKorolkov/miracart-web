@@ -1,0 +1,41 @@
+// ============================================
+// CARD COMPONENT
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+.card {
+  padding: spacing(6);
+  border-radius: radius('lg');
+  background: color('white');
+  @include card-shadow;
+
+  &__header {
+    margin-bottom: spacing(4);
+    padding-bottom: spacing(4);
+    border-bottom: 1px solid color('gray', 200);
+  }
+
+  &__title {
+    font-size: font-size('xl');
+    font-weight: font-weight('bold');
+    margin-bottom: spacing(2);
+  }
+
+  &__subtitle {
+    font-size: font-size('sm');
+    color: color('gray', 600);
+  }
+
+  &__body {
+    margin-bottom: spacing(4);
+  }
+
+  &__footer {
+    @include flex-between;
+    padding-top: spacing(4);
+    border-top: 1px solid color('gray', 200);
+  }
+}

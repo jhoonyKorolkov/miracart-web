@@ -1,0 +1,25 @@
+// ============================================
+// BADGE COMPONENT
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: spacing(1) spacing(3);
+  font-size: font-size('xs');
+  font-weight: font-weight('bold');
+  border-radius: radius('full');
+
+  &--primary {
+    background: color('primary');
+    color: white;
+  }
+
+  &--secondary {
+    background: color('gray', 200);
+    color: color('gray', 800);
+  }
+}

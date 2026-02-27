@@ -1,0 +1,17 @@
+# Build outputs
+dist
+node_modules
+.cache
+
+# Auto-generated
+*.webp
+public/images/sprite.svg
+
+# Config files (should not be formatted)
+.browserslistrc
+postcss.config.js
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
