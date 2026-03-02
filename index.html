@@ -6,8 +6,16 @@
   </head>
 
   <body>
-    {{> layout/header}}
-    <main class="page">{{> sections/materials}} {{> sections/advantages}}</main>
+    {{> layout/svg-sprite}} {{> layout/header}}
+    <main class="page">
+      {{> sections/materials}} {{> sections/advantages}} {{>
+      sections/save-money}}
+      <section
+        class="visit-form"
+        data-vue-island="SmallForm"
+        data-props='{"apiUrl": "/api/contact", "imageUrl": "/assets/images/visit-form.png","policyUrl": "/privacy-policy" }'
+      ></section>
+    </main>
     {{> layout/footer}} {{> layout/scripts}}
   </body>
 </html>

@@ -19,7 +19,7 @@ body::before {
   --line-gap: 193px;
   background-image: repeating-linear-gradient(
     to right,
-    rgba(31, 30, 30, 0.06) 0 var(--line-w),
+    $color-dark-overlay 0 var(--line-w),
     transparent var(--line-w) calc(var(--line-w) + var(--line-gap))
   );
   @include respond-max(tablet) {
@@ -44,40 +44,21 @@ body::before {
 
 h1,
 .h1 {
-  @include type(48, 58);
+  @include type(54, 64);
   font-weight: font-weight('bold');
-  margin-bottom: spacing(6);
-  color: color('dark');
 
   @include respond-max('md') {
-    @include type(36, 43);
-    margin-bottom: spacing(4);
-  }
-
-  @include respond-max('sm') {
-    @include type(28, 36);
-    margin-bottom: spacing(3);
+    @include type(38, 46);
   }
 }
 
 h2,
 .h2 {
-  @include type(36, 47);
+  @include type(46, 54);
   font-weight: font-weight('bold');
-  margin-bottom: spacing(5);
-  margin-top: spacing(10);
-  color: color('dark');
 
   @include respond-max('md') {
-    @include type(28, 36);
-    margin-bottom: spacing(4);
-    margin-top: spacing(8);
-  }
-
-  @include respond-max('sm') {
-    @include type(24, 34);
-    margin-bottom: spacing(3);
-    margin-top: spacing(6);
+    @include type(32, 40);
   }
 }
 
@@ -85,14 +66,9 @@ h3,
 .h3 {
   @include type(28, 39);
   font-weight: font-weight('bold');
-  margin-bottom: spacing(4);
-  margin-top: spacing(8);
-  color: color('primary');
 
   @include respond-max('md') {
     @include type(22, 31);
-    margin-bottom: spacing(3);
-    margin-top: spacing(6);
   }
 
   @include respond-max('sm') {
@@ -104,9 +80,6 @@ h4,
 .h4 {
   @include type(24, 34);
   font-weight: font-weight('bold');
-  margin-bottom: spacing(3);
-  margin-top: spacing(6);
-  color: color('secondary');
 
   @include respond-max('md') {
     @include type(20, 28);
@@ -119,15 +92,8 @@ h4,
 
 h5,
 .h5 {
-  @include type(20, 30);
+  @include type(20, 24);
   font-weight: font-weight('bold');
-  margin-bottom: spacing(2);
-  margin-top: spacing(4);
-  color: color('secondary');
-
-  @include respond-max('sm') {
-    @include type(16, 24);
-  }
 }
 
 h6,
@@ -143,7 +109,6 @@ h6,
 
 p,
 .text {
-  margin-bottom: spacing(4);
   line-height: line-height('relaxed');
   color: color('gray', 700);
   font-size: font-size('base');
@@ -154,30 +119,14 @@ p,
 }
 
 a {
-  color: color('primary');
+  color: color('secondary');
   text-decoration: none;
   transition: color 0.2s ease;
+  font-weight: 300;
 
   &:hover {
-    color: darken-color(color('primary'), 10%);
-    text-decoration: underline;
-  }
-}
-
-// Списки
-ul,
-ol {
-  margin: spacing(4) 0;
-  padding-left: spacing(6);
-
-  li {
-    margin-bottom: spacing(2);
-    line-height: line-height('relaxed');
-    color: color('gray', 700);
-  }
-
-  @include respond-max('sm') {
-    padding-left: spacing(5);
+    color: darken-color(color('secondary'), 10%);
+    // text-decoration: underline;
   }
 }
 

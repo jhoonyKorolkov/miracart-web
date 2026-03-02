@@ -2,6 +2,8 @@
 // СИСТЕМА ДИЗАЙНА - ПЕРЕМЕННЫЕ
 // ============================================
 
+@use 'sass:map';
+
 // Базовый размер шрифта для конвертации px -> rem
 $root-font-size: 16 !default;
 
@@ -19,23 +21,23 @@ $breakpoints: (
 
 // Цветовая палитра
 $colors: (
-  'primary': #42b883,
-  'secondary': #35495e,
+  'primary': #ffd900,
+  'secondary': #2f52de,
   'success': #28a745,
   'danger': #dc3545,
   'warning': #ffc107,
   'info': #17a2b8,
-  'light': #f8f9fa,
-  'dark': #343a40,
+  'light': #edf1f4,
+  'dark': #1f1e1e,
   'white': #ffffff,
   'black': #000000,
   'gray': (
     100: #f8f9fa,
-    200: #e9ecef,
+    200: #edf1f499,
     300: #dee2e6,
     400: #ced4da,
-    500: #adb5bd,
-    600: #6c757d,
+    500: #666f7533,
+    600: #666f75,
     700: #495057,
     800: #343a40,
     900: #212529,
@@ -64,6 +66,7 @@ $font-sizes: (
 ) !default;
 
 $font-weights: (
+  'light': 300,
   'normal': 400,
   'medium': 500,
   'bold': 700,
@@ -79,7 +82,6 @@ $line-heights: (
   'loose': 2,
 ) !default;
 
-// Spacing система
 $spacings: (
   0: 0,
   1: 0.25rem,
@@ -94,8 +96,12 @@ $spacings: (
   // 20px
   6: 1.5rem,
   // 24px
+  7: 1.625rem,
+  // 26px
   8: 2rem,
   // 32px
+  9: 1.4375rem,
+  // 23px
   10: 2.5rem,
   // 40px
   12: 3rem,
@@ -191,6 +197,7 @@ $font-family-buttons:
 // Алиас для обратной совместимости
 $font-family: $font-family-base !default;
 
-$color-border: #dee2e6 !default;
-$color-text: #343a40 !default;
-$color-bg: #ffffff !default;
+$color-border: transparent !default;
+$color-text: map.get($colors, 'dark') !default;
+$color-bg: map.get($colors, 'light') !default;
+$color-dark-overlay: rgba(31, 30, 30, 0.06) !default;

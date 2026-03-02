@@ -64,7 +64,7 @@ export default defineConfig({
           const files = fs.readdirSync(distPages);
 
           // Перемещаем каждый файл в корень dist/
-          files.forEach((file) => {
+          files.forEach((file: string) => {
             const oldPath = path.join(distPages, file);
             const newPath = path.join(distRoot, file);
             fs.renameSync(oldPath, newPath);

@@ -13,11 +13,11 @@
 
 // Основной миксин для кнопок (обновленная версия)
 @mixin btn(
-  $bg: var(--main, color('primary')),
+  $bg: var(--main, color('dark')),
   $color: var(--text, color('white')),
-  $height: px2rem(64),
+  $height: px2rem(80),
   $padding-x: spacing(12),
-  $border-radius: px2rem(40)
+  $border-radius: px2rem(16)
 ) {
   display: inline-flex;
   align-items: center;

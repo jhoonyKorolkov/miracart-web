@@ -468,12 +468,13 @@
   }
 }
 
-@mixin button-variant($bg-color, $text-color: white) {
+@mixin button-variant($bg-color, $text-color: white, $border-color: #666f7533) {
   background: $bg-color;
   color: $text-color;
+  border: 1px solid $border-color;
 
   &:hover:not(:disabled) {
-    background: darken-color($bg-color, 8%);
+    background: darken-color($bg-color, 2%);
   }
 
   &:active:not(:disabled) {

@@ -1,87 +1,58 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import svgstore from 'svgstore';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const iconsDir = path.resolve(__dirname, '../src/icons');
 const outputFile = path.resolve(__dirname, '../public/images/sprite.svg');
+const partialFile = path.resolve(
+  __dirname,
+  '../partials/layout/svg-sprite.hbs',
+);
 
 console.log('🎨 Generating SVG Sprite...\n');
 
-// Функция оптимизации SVG
-function optimizeSvg(content) {
-  let optimized = content;
+const sprites = svgstore({
+  cleanDefs: true,
+  cleanSymbols: true,
+  svgAttrs: {
+    'aria-hidden': 'true',
+    style: 'position:absolute;width:0;height:0;overflow:hidden',
+  },
+});
 
-  // Заменяем fill на currentColor (кроме fill="none" и fill="transparent")
-  optimized = optimized.replace(
-    /fill=["'](?!none|transparent)[^"']*["']/gi,
-    'fill="currentColor"',
-  );
+const svgFiles = fs.readdirSync(iconsDir).filter((f) => f.endsWith('.svg'));
 
-  // Заменяем stroke на currentColor (кроме stroke="none" и stroke="transparent")
-  optimized = optimized.replace(
-    /stroke=["'](?!none|transparent)[^"']*["']/gi,
-    'stroke="currentColor"',
-  );
-
-  // Удаляем дубликаты currentColor (если уже был)
-  optimized = optimized.replace(
-    /fill="currentColor"\s+fill="currentColor"/gi,
-    'fill="currentColor"',
-  );
-  optimized = optimized.replace(
-    /stroke="currentColor"\s+stroke="currentColor"/gi,
-    'stroke="currentColor"',
-  );
-
-  // Удаляем лишние пробелы и переносы
-  optimized = optimized.replace(/\s+/g, ' ').trim();
-
-  return optimized;
-}
-
-// Читаем все SVG файлы
-const svgFiles = fs
-  .readdirSync(iconsDir)
-  .filter((file) => file.endsWith('.svg'));
-
-if (svgFiles.length === 0) {
+if (!svgFiles.length) {
   console.log('⚠️  No SVG files found in src/icons/');
   process.exit(0);
 }
 
-// Генерируем спрайт
-let spriteContent = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">\n`;
-
 svgFiles.forEach((file) => {
-  const filePath = path.join(iconsDir, file);
-  const svgContent = fs.readFileSync(filePath, 'utf-8');
-  const name = path.basename(file, '.svg');
-
-  // Извлекаем содержимое SVG (без тега <svg>)
-  const match = svgContent.match(/<svg[^>]*>([\s\S]*?)<\/svg>/i);
-  if (match) {
-    let innerContent = match[1].trim();
-
-    // Оптимизируем SVG
-    innerContent = optimizeSvg(innerContent);
-
-    // Извлекаем viewBox из исходного SVG
-    const viewBoxMatch = svgContent.match(/viewBox=["']([^"']+)["']/i);
-    const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
-
-    spriteContent += `  <symbol id="icon-${name}" viewBox="${viewBox}">\n`;
-    spriteContent += `    ${innerContent}\n`;
-    spriteContent += `  </symbol>\n`;
-
-    console.log(`✓ Added icon-${name}`);
-  }
+  const name = `icon-${path.basename(file, '.svg')}`;
+  const content = fs.readFileSync(path.join(iconsDir, file), 'utf-8');
+  sprites.add(name, content);
+  console.log(`✓ Added ${name}`);
 });
 
-spriteContent += `</svg>`;
+// Получаем строку спрайта и заменяем все цвета на currentColor
+let spriteStr = sprites.toString({ inline: true });
+spriteStr = spriteStr.replace(
+  /fill="(?!none|transparent)[^"]*"/g,
+  'fill="currentColor"',
+);
+spriteStr = spriteStr.replace(
+  /stroke="(?!none|transparent)[^"]*"/g,
+  'stroke="currentColor"',
+);
 
-// Сохраняем partial
-fs.writeFileSync(outputFile, spriteContent);
+// Сохраняем SVG файл
+fs.writeFileSync(outputFile, spriteStr);
 
-console.log(`\n✨ SVG Sprite generated: ${outputFile}`);
+// Сохраняем как Handlebars partial для инлайна в HTML
+fs.writeFileSync(partialFile, spriteStr);
+
+console.log(`\n✨ Sprite:  ${outputFile}`);
+console.log(`📄 Partial: ${partialFile}`);
 console.log(`📦 Total icons: ${svgFiles.length}`);

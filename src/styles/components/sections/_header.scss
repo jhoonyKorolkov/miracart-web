@@ -1,0 +1,65 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.header {
+  background-color: color('light');
+  position: relative;
+  height: 90px;
+  border-bottom: 1px solid $color-dark-overlay;
+
+  &__logo {
+    & .icon {
+      color: color('dark');
+    }
+  }
+  &__box {
+    display: flex;
+    align-items: center;
+    padding-top: spacing(7);
+  }
+  &__nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: spacing(4);
+    &-socials {
+      display: flex;
+      gap: spacing(4);
+      &-link {
+        color: color('dark');
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: color('light');
+        transition: background-color 0.3s ease;
+        border: 1px solid color('gray', 500);
+        &:hover {
+          background: darken-color(color('light'), 2%);
+          color: color('dark');
+        }
+        & .icon {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+    &-chat {
+      @include button-variant(color('light'), color('dark'));
+      padding: spacing(0) spacing(10);
+      height: 40px;
+      @include flex-center;
+      font-weight: 600;
+      text-transform: uppercase;
+      @include type(13, 20);
+      color: color('dark');
+      border-radius: 8px;
+      &:hover {
+        color: darken-color(color('dark'), 10%);
+      }
+    }
+  }
+}
