@@ -13,8 +13,9 @@
       <section
         class="visit-form"
         data-vue-island="SmallForm"
-        data-props='{"apiUrl": "/api/contact", "imageUrl": "/assets/images/visit-form.png","policyUrl": "/privacy-policy" }'
+        data-props='{"apiUrl": "/api/contact", "user": {"url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg", "name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
       ></section>
+      {{> sections/audience}} {{> sections/roadmap}}
     </main>
     {{> layout/footer}} {{> layout/scripts}}
   </body>

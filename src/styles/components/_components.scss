@@ -4,15 +4,19 @@
 
 // Импорт всех компонентов
 @forward './modal';
-@forward './counter';
-@forward './login-form';
-@forward './cards';
-@forward './alerts';
-@forward './badges';
-@forward './spinner';
+// @forward './counter';
+// @forward './login-form';
+// @forward './cards';
+// @forward './alerts';
+// @forward './badges';
+// @forward './spinner';
 
 // Импорт секций
 @forward './sections/materials';
 @forward './sections/advantages';
 @forward './sections/save-money';
 @forward './sections/header';
+@forward './sections/visit-form';
+@forward './sections/audience';
+@forward './sections/roadmap';
+@forward './sections/footer';

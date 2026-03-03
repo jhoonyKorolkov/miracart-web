@@ -1,0 +1,37 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.audience {
+  margin: spacing(20) 0;
+  &__title {
+    margin-bottom: spacing(10);
+  }
+  &__list {
+    @include grid-auto-fit(267px, spacing(4));
+  }
+  &__item {
+    background: linear-gradient(
+      0deg,
+      rgba(237, 241, 244, 0.74) 65.18%,
+      #fff 128.11%
+    );
+    position: relative;
+    padding: spacing(6);
+    border-radius: 22px;
+    overflow: hidden;
+    & img {
+      display: block;
+      margin-bottom: spacing(4);
+      width: px2rem(80);
+      height: px2rem(80);
+    }
+    &-title {
+      margin-bottom: spacing(2);
+    }
+    &-text {
+      font-weight: font-weight('light');
+      @include type(16, 22);
+    }
+  }
+}

@@ -78,15 +78,11 @@ h3,
 
 h4,
 .h4 {
-  @include type(24, 34);
+  @include type(28, 36);
   font-weight: font-weight('bold');
 
   @include respond-max('md') {
-    @include type(20, 28);
-  }
-
-  @include respond-max('sm') {
-    @include type(18, 27);
+    @include type(24, 30);
   }
 }
 
@@ -256,9 +252,13 @@ a {
 
 .form-error {
   display: block;
-  margin-top: spacing(2);
-  color: color('danger');
+  margin-top: spacing(1);
+  background-color: color('danger');
   font-size: font-size('sm');
+  border-radius: 8px;
+  padding: spacing(2) spacing(3);
+  color: color('white');
+  @include type(12, 16);
 }
 
 // Floating label input

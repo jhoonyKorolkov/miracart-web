@@ -1,0 +1,161 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+@use '../../abstracts/component-mixins' as *;
+
+.visit-form {
+  margin: spacing(20) 0;
+  &__inner {
+    background-color: color('primary');
+    padding: px2rem(60);
+    position: relative;
+    border-radius: 22px;
+    display: grid;
+    grid-template-columns: px2rem(463) 1fr;
+    grid-gap: 60px;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/bg2.svg');
+      background-position: center;
+      opacity: 0.6; // <-- регулируй прозрачность
+      z-index: 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: spacing(6);
+  }
+
+  &__info {
+    position: relative;
+  }
+
+  &__form {
+    position: relative;
+  }
+
+  &__author {
+    display: flex;
+    gap: spacing(6);
+
+    &-photo {
+      width: px2rem(120);
+      height: px2rem(114);
+      border-radius: 16px;
+      object-fit: cover;
+    }
+    &-text {
+      font-weight: font-weight('light');
+      color: color('dark');
+    }
+    &-name {
+      font-weight: font-weight('light');
+      color: color('gray', 700);
+      margin-top: spacing(2);
+      @include type(14, 18);
+    }
+  }
+
+  &__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: spacing(6);
+  }
+
+  &__agree {
+    margin-top: spacing(4);
+    &-label {
+      position: relative;
+      padding-left: 32px; /* отступ для чекбокса */
+      cursor: pointer;
+      user-select: none;
+      color: color('dark');
+      font-weight: font-weight('light');
+      @include type(14, 18);
+      cursor: pointer;
+      user-select: none;
+      display: block;
+
+      /* Бокс */
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.8);
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      /* Галочка */
+      &::after {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px; /* центрируем 16x16 иконку внутри 20x20 бокса */
+        width: 16px;
+        height: 16px;
+        mask: url('/images/check.svg') center / contain no-repeat;
+        -webkit-mask: url('/images/check.svg') center / contain no-repeat;
+        background: #1f1e1e;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      /* Ссылки внутри подписи — не ломаем типографику и стили */
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          color 0.2s ease,
+          text-decoration-color 0.2s ease;
+      }
+      a:hover {
+        text-decoration-color: currentColor;
+      }
+      a:focus-visible {
+        outline: 2px solid rgba(31, 30, 30, 0.3);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  /* Прячем чекбокс, но сохраняем доступность */
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+  }
+
+  /* Состояния */
+
+  &__checkbox:checked + .visit-form__agree-label::after {
+    opacity: 1;
+  }
+
+  &__submit {
+    @include btn;
+    text-transform: uppercase;
+    height: 64px;
+    margin-top: 24px;
+    @include type(14, 20);
+  }
+}

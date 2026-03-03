@@ -83,15 +83,11 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: font-size('base');
-  color: var(--text_gray, color('gray', 500));
+  color: color('gray', 600);
   transition: all 0.2s ease;
   pointer-events: none;
   background: transparent;
   font-weight: font-weight('normal');
-
-  @include respond-max('sm') {
-    font-size: font-size('sm');
-  }
 }
 
 // Input с поддержкой floating label (улучшенная версия)
@@ -102,7 +98,7 @@
   border-radius: radius('xl');
   font-size: font-size('base');
   background: rgba(255, 255, 255, 0.8);
-  color: var(--text, color('gray', 900));
+  color: color('dark');
   border: 1px solid transparent;
   width: 100%;
 
@@ -125,8 +121,6 @@
   &.has-value ~ label {
     transform: translateY(px2rem(-24));
     font-size: px2rem(12);
-    color: var(--main, color('primary'));
-    font-weight: font-weight('medium');
   }
 
   // Placeholder (скрываем по умолчанию)
@@ -135,15 +129,15 @@
   }
 
   &:focus::placeholder {
-    color: var(--text_gray, color('gray', 400));
+    color: color('gray', 400);
     @include type(14, 20);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--main, color('primary'));
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 3px alpha(var(--main, color('primary')), 0.1);
+    border-color: color('primary');
+    background: color('white');
+    box-shadow: 0 0 0 3px alpha(color('primary'), 0.1);
   }
 
   &:disabled {

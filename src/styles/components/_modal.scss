@@ -6,49 +6,178 @@
 // МОДАЛЬНОЕ ОКНО
 // ============================================
 
-// Overlay (подложка)
-.modal-overlay {
+.modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  z-index: z-index('modal');
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: alpha(color('black'), 0.5);
-  @include flex-center;
-  z-index: 1000;
   opacity: 0;
   visibility: hidden;
   @include transition(opacity, visibility);
 
-  &.is-active {
+  &.show {
     opacity: 1;
     visibility: visible;
   }
-}
 
-// Модальное окно
-.modal {
-  position: relative;
-  background: color('white');
-  border-radius: radius('xl');
-  box-shadow: shadow('2xl');
-  max-width: px2rem(600);
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  transform: scale(0.9) translateY(px2rem(-20));
-  @include transition(transform);
-
-  .modal-overlay.is-active & {
-    transform: scale(1) translateY(0);
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    cursor: pointer;
   }
 
-  @include respond-max('sm') {
-    width: 95%;
-    max-width: 100%;
+  &__container {
+    position: relative;
+    z-index: 10;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: spacing(6) 0 spacing(12);
+
+    @include respond-max('sm') {
+      padding: spacing(5) 0;
+    }
   }
 
-  // Заголовок модалки
+  &__scroll {
+    position: relative;
+    width: 100%;
+    max-width: px2rem(600);
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: px2rem(600);
+
+    background: color('white');
+    border-radius: 22px;
+    overflow: hidden;
+
+    padding: px2rem(40) px2rem(40) px2rem(50);
+
+    transform: scale(0.9);
+    @include transition(transform);
+
+    .modal.show & {
+      transform: scale(1);
+    }
+
+    @include respond-max('tablet') {
+      padding: px2rem(40);
+    }
+
+    &--compact {
+      padding: px2rem(40);
+      text-align: center;
+
+      @include respond-max('tablet') {
+        padding: px2rem(28) spacing(5);
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: spacing(5);
+    right: spacing(5);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: spacing(2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include transition(opacity);
+
+    @include respond-max('tablet') {
+      top: px2rem(10);
+      right: px2rem(10);
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    .icon {
+      color: color('dark');
+    }
+  }
+
+  &__body {
+    @include type(16, 24);
+    color: color('dark');
+    text-align: center;
+
+    img {
+      display: block;
+      margin: 0 auto spacing(4);
+    }
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto spacing(4);
+    max-width: px2rem(255);
+    height: auto;
+  }
+
+  &__title {
+    margin: 0 0 spacing(4);
+    font-weight: font-weight('bold');
+    color: color('dark');
+
+    @include type(28, 36);
+
+    @include respond-max('tablet') {
+      @include type(24, 30);
+    }
+  }
+
+  &__text {
+    color: color('gray', 700);
+    margin: 0;
+
+    p {
+      margin: 0 0 spacing(4);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: color('primary');
+      text-decoration: underline dashed;
+      @include transition(opacity);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // Модификатор для успешной модалки
+  &--success {
+    .modal__body {
+      text-align: center;
+    }
+
+    .modal__title {
+      text-align: center;
+    }
+  }
+
+  // Старая структура для совместимости
   &__header {
     @include flex-between;
     padding: spacing(6);
@@ -59,53 +188,6 @@
     }
   }
 
-  &__title {
-    font-size: font-size('2xl');
-    font-weight: font-weight('bold');
-    color: color('dark');
-    margin: 0;
-
-    @include respond-max('sm') {
-      font-size: font-size('xl');
-    }
-  }
-
-  // Кнопка закрытия
-  &__close {
-    @include size(px2rem(40));
-    @include flex-center;
-    background: transparent;
-    border: none;
-    border-radius: radius('full');
-    color: color('gray', 600);
-    cursor: pointer;
-    @include transition(background, color);
-
-    &:hover {
-      background: color('gray', 100);
-      color: color('gray', 900);
-    }
-
-    &:focus {
-      outline: 2px solid color('primary');
-      outline-offset: px2rem(2);
-    }
-
-    svg {
-      @include size(px2rem(24));
-    }
-  }
-
-  // Контент модалки
-  &__body {
-    padding: spacing(6);
-
-    @include respond-max('sm') {
-      padding: spacing(4);
-    }
-  }
-
-  // Футер с кнопками
   &__footer {
     display: flex;
     justify-content: flex-end;
@@ -125,16 +207,15 @@
 
   // Варианты модалок
   &--small {
-    max-width: px2rem(400);
+    .modal__content {
+      max-width: px2rem(400);
+    }
   }
 
   &--large {
-    max-width: px2rem(900);
-  }
-
-  &--full {
-    max-width: 95vw;
-    max-height: 95vh;
+    .modal__content {
+      max-width: px2rem(900);
+    }
   }
 }
 
@@ -143,11 +224,30 @@ body.modal-open {
   overflow: hidden;
 }
 
-// Анимация для backdrop при закрытии
-.modal-overlay.is-closing {
+// Старая структура modal-overlay для совместимости
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: alpha(color('black'), 0.5);
+  @include flex-center;
+  z-index: 1000;
   opacity: 0;
+  visibility: hidden;
+  @include transition(opacity, visibility);
 
-  .modal {
-    transform: scale(0.9) translateY(px2rem(-20));
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.is-closing {
+    opacity: 0;
+
+    .modal {
+      transform: scale(0.9) translateY(px2rem(-20));
+    }
   }
 }

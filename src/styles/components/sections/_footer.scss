@@ -1,0 +1,127 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.footer {
+  position: relative;
+  padding-top: spacing(20);
+  padding-bottom: spacing(10);
+  background: color('dark');
+
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/bg.svg');
+    opacity: 0.2;
+    z-index: 0;
+  }
+  position: relative;
+  z-index: 1;
+
+  @include respond-max('tablet') {
+    margin-top: spacing(10);
+    padding-top: spacing(10);
+  }
+
+  &__nav {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: px2rem(364) 1fr;
+    grid-gap: spacing(6);
+    &:not(:last-child) {
+      margin-bottom: spacing(20);
+      @include respond-max('tablet') {
+        margin-bottom: spacing(10);
+      }
+    }
+    p {
+      color: #9a9a9a;
+      @include type(14, 20);
+    }
+
+    @include respond-max('tablet') {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    margin-bottom: spacing(6);
+    .icon {
+      color: color('primary');
+    }
+  }
+
+  &__socials {
+    margin-top: spacing(6);
+    display: flex;
+    gap: spacing(4);
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: px2rem(40);
+      height: px2rem(40);
+      border-radius: radius('full');
+      background: color('gray', 800);
+      position: relative;
+      @include transition(background);
+
+      &:hover {
+        background: alpha(color('gray', 800), 0.5);
+      }
+
+      .icon {
+        color: color('primary');
+      }
+
+      &.--tg-icon {
+        .icon {
+          margin-right: px2rem(3);
+        }
+      }
+    }
+  }
+
+  &__menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: spacing(4) spacing(6);
+    @include respond-max('tablet') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &-link {
+      font-weight: font-weight('extrabold');
+      text-transform: uppercase;
+      color: color('white');
+      @include transition(color);
+
+      &:hover {
+        color: color('primary');
+      }
+    }
+  }
+  &__submenu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: spacing(2) spacing(6);
+    margin-top: spacing(10);
+    @include respond-max('tablet') {
+      display: flex;
+      flex-direction: column;
+    }
+    &-link {
+      font-weight: font-weight('light');
+      color: color('white');
+      @include transition(color);
+
+      &:hover {
+        color: color('primary');
+      }
+    }
+  }
+}

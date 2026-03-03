@@ -1,0 +1,195 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+@use '../../abstracts/component-mixins' as *;
+
+.roadmap {
+  margin: spacing(20) 0;
+
+  &.--kp-roadmap {
+    .roadmap__item {
+      background-color: var(--bg);
+    }
+
+    .roadmap__grid {
+      &::after {
+        background:
+          url('/images/roadmap.svg') 0.7px 60px / 8px auto no-repeat,
+          linear-gradient(
+            180deg,
+            color('white') 0%,
+            color('primary') 2.88%,
+            color('primary') 95.98%,
+            color('dark') 100%
+          );
+      }
+    }
+  }
+
+  @include respond-max('tablet') {
+    margin: spacing(10) 0 px2rem(60);
+  }
+
+  &__info {
+    background-color: var(--text);
+    color: var(--bg);
+    padding: spacing(4) 0;
+    display: block;
+    text-align: center;
+    border-radius: radius('3xl');
+    font-weight: font-weight('light');
+
+    @include respond-max('tablet') {
+      padding: spacing(4) spacing(5);
+      text-align: left;
+      margin-top: spacing(4);
+    }
+  }
+
+  &__title {
+    margin-bottom: spacing(10);
+
+    @include respond-max('tablet') {
+      margin-bottom: spacing(6);
+    }
+  }
+
+  &__scheme {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__grid {
+    position: relative;
+    z-index: z-index('base');
+    display: grid;
+    grid-template-columns: px2rem(550) 1fr;
+    column-gap: px2rem(56);
+    row-gap: spacing(10);
+    padding-bottom: spacing(10);
+    overflow: hidden;
+
+    @include respond-max('tablet') {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      row-gap: spacing(4);
+      column-gap: 0;
+      min-height: auto;
+      padding-bottom: 0;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50.7%;
+      transform: translateX(-50%);
+      width: px2rem(8);
+      height: 100%;
+      z-index: -1;
+
+      background:
+        url('/images/roadmap.svg') 0.7px 60px / 8px auto no-repeat,
+        linear-gradient(
+          180deg,
+          color('light') 0%,
+          color('primary') 2.88%,
+          color('primary') 95.98%,
+          color('dark') 100%
+        );
+
+      @include respond-max('tablet') {
+        left: spacing(4);
+        transform: none;
+
+        /* SVG на всю высоту */
+        background-repeat: repeat-y, no-repeat;
+
+        /* размер меньше */
+        background-size:
+          4px auto,
+          auto;
+
+        background-position:
+          center 0,
+          0 0;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    padding: spacing(8) spacing(10);
+    border: px2rem(3) solid color('primary');
+    border-radius: radius('2xl');
+    gap: spacing(4);
+    position: relative;
+    background-color: color('light');
+    z-index: z-index('above');
+    align-self: start;
+
+    @include respond-max('tablet') {
+      padding: spacing(6) spacing(4);
+      gap: spacing(2);
+    }
+  }
+
+  &__num {
+    font-weight: font-weight('bold');
+    @include type(20, 24);
+  }
+
+  &__text {
+    &-title {
+      font-weight: font-weight('bold');
+      margin-bottom: spacing(2);
+      @include type(20, 24);
+    }
+
+    p {
+      font-weight: font-weight('light');
+      margin: 0;
+      @include type(16, 22);
+    }
+
+    &-bold {
+      font-weight: font-weight('bold');
+      color: color('gray', 800);
+    }
+  }
+
+  &__referal {
+    background-color: color('primary');
+    position: relative;
+    border-radius: 22px;
+    padding: px2rem(48) px2rem(60);
+    margin-top: spacing(10);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/bg.svg');
+      background-size: cover;
+      // background-position: center;
+      opacity: 0.8; // <-- регулируй прозрачность
+      z-index: 0;
+    }
+    &-box {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: spacing(5);
+    }
+    &-link {
+      @include btn;
+      text-transform: uppercase;
+      height: 64px;
+      @include type(14, 20);
+      &:hover {
+        color: color('white');
+      }
+    }
+  }
+}
