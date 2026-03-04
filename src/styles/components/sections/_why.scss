@@ -1,0 +1,65 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.why {
+  margin: spacing(20) 0;
+  &__grid {
+    @include grid(12, spacing(6));
+
+    @include respond-max('tablet') {
+      display: flex;
+      flex-direction: column;
+      gap: spacing(10);
+    }
+  }
+
+  &__content {
+    @include col-span(1, 8);
+    @include respond-max('tablet') {
+      order: 2;
+    }
+    &-list {
+      @include flex-column;
+      gap: spacing(10);
+    }
+    &-item-title {
+      margin-bottom: spacing(2);
+    }
+    &-item-text {
+      color: #666f75;
+      @include type(16, 22);
+    }
+  }
+
+  &__title {
+    margin-bottom: spacing(10);
+  }
+
+  &__image {
+    @include col-span(8, 13);
+    position: relative;
+    overflow: hidden;
+
+    @include respond-max('tablet') {
+      order: 1;
+      width: 100%;
+    }
+
+    &-logo {
+      position: absolute;
+      top: px2rem(78);
+      left: 50%;
+      transform: translateX(-50%);
+      color: color('primary');
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+  }
+}

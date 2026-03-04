@@ -4,6 +4,7 @@
 
 // Импорт всех компонентов
 @forward './modal';
+@forward './modal-cookies';
 // @forward './counter';
 // @forward './login-form';
 // @forward './cards';
@@ -20,3 +21,9 @@
 @forward './sections/audience';
 @forward './sections/roadmap';
 @forward './sections/footer';
+@forward './sections/why';
+@forward './sections/slogan';
+@forward './sections/calc-materials';
+@forward './sections/faq';
+@forward './sections/contacts';
+@forward './sections/repair-form';

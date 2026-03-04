@@ -1,0 +1,21 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+
+.slogan {
+  margin: spacing(20) 0;
+  text-align: center;
+  @include type(36, 46);
+  @include respond-max('tablet') {
+    margin: spacing(15) 0;
+    @include type(26, 36);
+  }
+
+  mark {
+    background: color('primary');
+    padding-left: spacing(2);
+    padding-right: spacing(2);
+    border-radius: spacing(1);
+    font-weight: bold;
+  }
+}

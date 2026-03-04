@@ -1,0 +1,129 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/mixins' as *;
+@use '../../abstracts/component-mixins' as *;
+
+.faq {
+  margin: spacing(20) 0;
+  width: 100%;
+  position: relative;
+
+  @include respond-max('tablet') {
+    margin: spacing(10) 0;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: px2rem(364) 1fr;
+    gap: spacing(6);
+    position: relative;
+
+    @include respond-max('tablet') {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(6);
+    counter-reset: faq-counter;
+
+    @include respond-max('tablet') {
+      margin-top: spacing(8);
+    }
+  }
+
+  &__item {
+    padding: spacing(8) spacing(10);
+    border: 1px solid rgba(color('dark'), 0.2);
+    border-radius: radius('xl');
+    background-color: #edf1f4;
+    position: relative;
+    transition: all 0.3s ease;
+
+    @include respond-max('tablet') {
+      padding: spacing(5);
+    }
+
+    &.active {
+      border-color: color('white');
+      background-color: color('white');
+      color: color('dark');
+
+      .faq__item-main {
+        display: block;
+        margin-top: spacing(4);
+      }
+
+      .icon {
+        transform: rotate(180deg);
+        color: color('dark');
+        fill: none;
+      }
+    }
+
+    &-hdr {
+      display: flex;
+      gap: spacing(5);
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: font-weight('bold');
+      @include type(20, 24);
+
+      @include respond-max('tablet') {
+        @include type(18, 22);
+      }
+    }
+
+    &-toggle {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      color: inherit;
+
+      .icon {
+        width: px2rem(24);
+        height: px2rem(24);
+        transition: transform 0.3s ease;
+        color: color('dark');
+        fill: none;
+      }
+    }
+
+    &-main {
+      font-weight: font-weight('light');
+      display: none;
+      color: color('gray', 600);
+
+      .faq__item.active & {
+        color: color('white');
+      }
+
+      p {
+        margin-bottom: spacing(3);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-btn {
+      margin-top: spacing(4);
+      @include btn(color('primary'), color('dark'));
+      text-decoration: none;
+      height: 64px;
+      &:hover {
+        color: color('dark');
+      }
+    }
+  }
+}

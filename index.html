@@ -2,21 +2,111 @@
 <html lang="ru">
   <head>
     <!-- prettier-ignore -->
-    {{> layout/head title="Главная" description="Шаблон фронтенд-проекта на Vite с Vue Islands, SCSS и Handlebars"}}
+    {{> layout/head title="Главная" description="Подберём, закупим и доставим товары для вашего ремонта и обустройства  без переплат и хаоса"}}
   </head>
-
   <body>
-    {{> layout/svg-sprite}} {{> layout/header}}
+    {{> layout/svg-sprite}}
+    <!---->
+    {{> layout/header}}
     <main class="page">
-      {{> sections/materials}} {{> sections/advantages}} {{>
-      sections/save-money}}
+      {{> sections/materials}}
+      <!---->
+      {{> sections/advantages}}
+      <!---->
+      {{> sections/save-money}}
       <section
         class="visit-form"
         data-vue-island="SmallForm"
         data-props='{"apiUrl": "/api/contact", "user": {"url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg", "name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
       ></section>
-      {{> sections/audience}} {{> sections/roadmap}}
+      {{> sections/audience}}
+      <!---->
+      {{> sections/roadmap}}
+      <!---->
+      {{> sections/why}}
+      <!---->
+      {{> sections/slogan}}
+      <section
+        class="calc-materials"
+        data-vue-island="BigForm"
+        data-props='{
+          "tasks": [
+            {
+              "id": 1,
+              "title": "Подобрать всё сразу",
+              "description": "Полная комплектация материалов для ремонта всей квартиры — от начала работ до финальной отделки."
+            },
+            {
+              "id": 2,
+              "title": "Ремонт отдельного помещения",
+              "description": "Когда нужно сделать ремонт или обновить отдельную комнату или зону, не затрагивая всю квартиру."
+            },
+            {
+              "id": 3,
+              "title": "Закрыть одиночный этап ремонта",
+              "description": "Материалы под конкретный этап ремонта, на котором вы сейчас находитесь."
+            },
+            {
+              "id": 4,
+              "title": "Обустроить квартиру",
+              "description": "От мебели и техники до света и текстиля. Когда обустройством пространства нужно заняться отдельно."
+            }
+          ],
+          "propertyType": [
+            { "id": 1, "value": "Квартира" },
+            { "id": 2, "value": "Дом" },
+            { "id": 3, "value": "Офис" },
+            { "id": 4, "value": "Другое" }
+          ],
+          "square": [
+            { "id": 1, "value": "до 50м2" },
+            { "id": 2, "value": "50-80 м2" },
+            { "id": 3, "value": "80-120 м2" },
+            { "id": 4, "value": "больше 120м2" }
+          ],
+          "budget": [
+            { "id": 1, "value": "до 500 000 ₽" },
+            { "id": 2, "value": "500 000 - 1 000 000 ₽" },
+            { "id": 3, "value": "1 000 000 - 2 000 000 ₽" },
+            { "id": 4, "value": "больше 2 000 000 ₽" }
+          ],
+          "house": [
+            { "id": 1, "value": "Новостройка" },
+            { "id": 2, "value": "Вторичное жильё" },
+            { "id": 3, "value": "Частный дом" }
+          ],
+          "interior": [
+            { "id": 1, "value": "Минимализм" },
+            { "id": 2, "value": "Скандинавский" },
+            { "id": 3, "value": "Лофт" },
+            { "id": 4, "value": "Классика" },
+            { "id": 5, "value": "Современный" },
+            { "id": 6, "value": "Не определился" }
+          ],
+          "state": [
+            { "id": 1, "value": "Черновая отделка" },
+            { "id": 2, "value": "Ремонт закончен наполовину" },
+            { "id": 3, "value": "Финальная стадия" },
+            { "id": 4, "value": "Только планирую" }
+          ],
+          "apiUrl": "/api/calculate",
+          "policyUrl": "/privacy-policy"
+        }'
+      ></section>
+      <section
+        class="repair-form"
+        data-vue-island="RepairForm"
+        data-props='{"apiUrl": "/api/contact", "user": {"url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg", "name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
+      ></section>
+      <!---->
+      {{> sections/faq}}
+      <!---->
+      {{> sections/contacts}}
     </main>
-    {{> layout/footer}} {{> layout/scripts}}
+    {{> layout/footer}}
+    <!---->
+    {{> layout/scripts}}
+    <!---->
+    {{> layout/modal-cookies}}
   </body>
 </html>

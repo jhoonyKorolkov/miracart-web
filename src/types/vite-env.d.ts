@@ -20,3 +20,9 @@ interface HTMLElement {
     props?: string;
   };
 }
+
+// Типы для импорта SVG как raw строки
+declare module '*.svg?raw' {
+  const content: string;
+  export default content;
+}

@@ -9,24 +9,23 @@
 
 .materials {
   margin: spacing(20) 0;
-
-  @include respond-max('tablet') {
-    padding: 0;
+  @include respond-max(tablet) {
+    margin: spacing(10) 0;
   }
 
   &__grid {
     @include grid(12, spacing(6));
 
-    @include respond-max('tablet') {
+    @include respond-max(tablet) {
       display: flex;
-      flex-direction: column;
-      gap: spacing(10);
+      flex-direction: column-reverse;
+      gap: 0;
     }
   }
 
   &__content {
     @include col-span(1, 8);
-    @include respond-max('tablet') {
+    @include respond-max(tablet) {
       order: 2;
     }
   }
@@ -36,9 +35,9 @@
     margin-bottom: px2rem(32);
     text-transform: none;
 
-    @include respond-max('tablet') {
-      @include type(36, 44);
-      margin-bottom: spacing(8);
+    @include respond-max(tablet) {
+      margin-bottom: spacing(4);
+      overflow: hidden;
     }
   }
 
@@ -59,6 +58,11 @@
       // background-size: cover;
       background-repeat: no-repeat;
       z-index: -1;
+      @include respond-max(tablet) {
+        left: 0px;
+        padding-right: px2rem(8);
+        bottom: -4px;
+      }
     }
   }
 
@@ -67,14 +71,20 @@
     border: 4px solid color('primary');
     border-radius: 22px;
     padding: spacing(10);
-    @include respond-max('tablet') {
-      margin-bottom: spacing(8);
+    position: relative;
+    background-color: color('light');
+    @include respond-max(tablet) {
+      margin-bottom: spacing(4);
+      padding: spacing(6);
     }
   }
 
   &__intro {
     margin-bottom: spacing(4);
     font-weight: font-weight('light');
+    @include respond-max(tablet) {
+      margin-bottom: spacing(2);
+    }
   }
 
   &__list {
@@ -84,6 +94,9 @@
     display: flex;
     flex-direction: column;
     gap: spacing(4);
+    @include respond-max(tablet) {
+      gap: spacing(2);
+    }
   }
 
   &__list-item {
@@ -92,6 +105,9 @@
     gap: spacing(4);
     font-weight: font-weight('light');
     @include type(16, 24);
+    @include respond-max(tablet) {
+      gap: spacing(2);
+    }
   }
 
   &__icon {
@@ -106,6 +122,11 @@
     @include btn;
     text-transform: uppercase;
     width: 100%;
+    @include respond-max(tablet) {
+      word-break: break-word;
+      padding-left: px2rem(40);
+      padding-right: px2rem(40);
+    }
   }
 
   &__image {
@@ -114,9 +135,10 @@
     border-radius: 22px;
     overflow: hidden;
 
-    @include respond-max('tablet') {
-      order: 1;
-      width: 100%;
+    @include respond-max(tablet) {
+      margin-top: spacing(4);
+      // order: 1;
+      // width: 100%;
     }
 
     img {
@@ -135,7 +157,7 @@
     width: px2rem(134);
     height: px2rem(140);
 
-    @include respond-max('tablet') {
+    @include respond-max(tablet) {
       width: px2rem(70);
       height: px2rem(70);
       top: px2rem(16);

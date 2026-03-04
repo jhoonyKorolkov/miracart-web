@@ -1,3 +1,6 @@
+import { initFaqAccordion } from './utils/faq';
+import { initModalCookies } from './utils/modalCookies';
+
 interface Island {
   mount: (el: HTMLElement) => void;
 }
@@ -15,4 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
       island.mount(el);
     }
   });
+
+  // Инициализируем FAQ аккордеон
+  initFaqAccordion();
+
+  // Инициализируем модальное окно cookies
+  initModalCookies();
 });

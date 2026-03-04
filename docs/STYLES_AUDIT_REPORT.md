@@ -248,7 +248,7 @@ src/styles/
   width: px2rem(320);
   height: px2rem(64);
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     padding: spacing(2);
   }
 }

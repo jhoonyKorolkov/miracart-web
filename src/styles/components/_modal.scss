@@ -42,7 +42,7 @@
     align-items: flex-start;
     padding: spacing(6) 0 spacing(12);
 
-    @include respond-max('sm') {
+    @include respond-max(tablet) {
       padding: spacing(5) 0;
     }
   }
@@ -183,7 +183,7 @@
     padding: spacing(6);
     border-bottom: 1px solid color('gray', 200);
 
-    @include respond-max('sm') {
+    @include respond-max(tablet) {
       padding: spacing(4);
     }
   }
@@ -195,7 +195,7 @@
     padding: spacing(6);
     border-top: 1px solid color('gray', 200);
 
-    @include respond-max('sm') {
+    @include respond-max(tablet) {
       padding: spacing(4);
       flex-direction: column;
 

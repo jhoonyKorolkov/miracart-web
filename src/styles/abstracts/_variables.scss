@@ -9,12 +9,7 @@ $root-font-size: 16 !default;
 
 // Breakpoints для адаптивного дизайна
 $breakpoints: (
-  'xs': 0,
-  'sm': 576px,
   'phone': 767px,
-  'md': 768px,
-  'lg': 992px,
-  'xl': 1200px,
   'tablet': 1240px,
   'xxl': 1400px,
 ) !default;

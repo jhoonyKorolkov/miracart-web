@@ -135,9 +135,9 @@
 
   &:focus {
     outline: none;
-    border-color: color('primary');
+    // border-color: color('primary');
     background: color('white');
-    box-shadow: 0 0 0 3px alpha(color('primary'), 0.1);
+    // box-shadow: 0 0 0 3px alpha(color('primary'), 0.1);
   }
 
   &:disabled {
@@ -164,8 +164,70 @@
     }
   }
 
-  @include respond-max('sm') {
+  @include respond-max(tablet) {
     padding: px2rem(18) px2rem(16) px2rem(6);
+    font-size: font-size('sm');
+  }
+}
+
+// Select с поддержкой floating label
+@mixin select-floating($height: px2rem(64)) {
+  height: $height;
+  padding: px2rem(21) px2rem(20) px2rem(8);
+  padding-right: px2rem(48);
+  transition: all 0.2s ease;
+  border-radius: radius('xl');
+  font-size: font-size('base');
+  background-color: rgba(255, 255, 255, 0.8);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23666F75' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right px2rem(20) center;
+  color: color('dark');
+  border: 1px solid #666f7533;
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+
+  // Label всегда в верхней позиции для select (так как есть значение)
+  ~ label {
+    transform: translateY(px2rem(-24));
+    font-size: px2rem(12);
+  }
+
+  &:focus {
+    outline: none;
+    // border-color: color('primary');
+    background-color: color('white');
+    // box-shadow: 0 0 0 3px alpha(color('primary'), 0.1);
+  }
+
+  &:disabled {
+    border-color: color('gray', 300);
+    background-color: color('gray', 100);
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    ~ label {
+      color: color('gray', 400);
+      cursor: not-allowed;
+    }
+  }
+
+  &.error {
+    border-color: color('danger');
+
+    &:focus {
+      box-shadow: 0 0 0 3px alpha(color('danger'), 0.1);
+    }
+
+    ~ label {
+      color: color('danger');
+    }
+  }
+
+  @include respond-max(tablet) {
+    padding: px2rem(18) px2rem(16) px2rem(6);
+    padding-right: px2rem(40);
     font-size: font-size('sm');
   }
 }
@@ -182,6 +244,21 @@
 
   input {
     @include input-floating($height);
+  }
+
+  label {
+    @include input-floating-label;
+  }
+}
+
+// Полный стек для floating select (wrapper + select + label)
+@mixin select-group-floating($height: px2rem(64)) {
+  .select-wrapper {
+    @include input-floating-wrapper;
+  }
+
+  select {
+    @include select-floating($height);
   }
 
   label {

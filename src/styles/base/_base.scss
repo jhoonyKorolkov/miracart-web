@@ -47,7 +47,7 @@ h1,
   @include type(54, 64);
   font-weight: font-weight('bold');
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     @include type(38, 46);
   }
 }
@@ -57,7 +57,7 @@ h2,
   @include type(46, 54);
   font-weight: font-weight('bold');
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     @include type(32, 40);
   }
 }
@@ -67,11 +67,11 @@ h3,
   @include type(28, 39);
   font-weight: font-weight('bold');
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     @include type(22, 31);
   }
 
-  @include respond-max('sm') {
+  @include respond-max(tablet) {
     @include type(20, 28);
   }
 }
@@ -81,7 +81,7 @@ h4,
   @include type(28, 36);
   font-weight: font-weight('bold');
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     @include type(24, 30);
   }
 }
@@ -109,7 +109,7 @@ p,
   color: color('gray', 700);
   font-size: font-size('base');
 
-  @include respond-max('sm') {
+  @include respond-max(tablet) {
     margin-bottom: spacing(3);
   }
 }
@@ -119,6 +119,7 @@ a {
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 300;
+  text-decoration: underline;
 
   &:hover {
     color: darken-color(color('secondary'), 10%);
@@ -187,12 +188,7 @@ a {
   margin: 0 auto;
   box-sizing: content-box;
 
-  @include respond-max('lg') {
-    max-width: 100%;
-    padding: 0 spacing(5);
-  }
-
-  @include respond-max('sm') {
+  @include respond-max(tablet) {
     padding: 0 spacing(4);
   }
 
@@ -212,7 +208,7 @@ a {
 .form-group {
   margin-bottom: spacing(5);
 
-  @include respond-max('sm') {
+  @include respond-max(tablet) {
     margin-bottom: spacing(4);
   }
 }
@@ -267,6 +263,10 @@ a {
 
   input {
     @include input-floating;
+  }
+
+  select {
+    @include select-floating;
   }
 
   label {

@@ -7,16 +7,26 @@
   position: relative;
   height: 90px;
   border-bottom: 1px solid $color-dark-overlay;
+  @include respond-max(tablet) {
+    height: 70px;
+  }
 
   &__logo {
     & .icon {
       color: color('dark');
+      @include respond-max(tablet) {
+        width: 129px;
+        height: 24px;
+      }
     }
   }
   &__box {
     display: flex;
     align-items: center;
     padding-top: spacing(7);
+    @include respond-max(tablet) {
+      padding-top: px2rem(25);
+    }
   }
   &__nav {
     margin-left: auto;
@@ -26,6 +36,9 @@
     &-socials {
       display: flex;
       gap: spacing(4);
+      @include respond-max(tablet) {
+        gap: spacing(6);
+      }
       &-link {
         color: color('dark');
         width: 40px;
@@ -37,6 +50,12 @@
         background-color: color('light');
         transition: background-color 0.3s ease;
         border: 1px solid color('gray', 500);
+        @include respond-max(tablet) {
+          width: auto;
+          height: auto;
+          padding: 0;
+          border: none;
+        }
         &:hover {
           background: darken-color(color('light'), 2%);
           color: color('dark');
@@ -44,6 +63,10 @@
         & .icon {
           width: 18px;
           height: 18px;
+          @include respond-max(tablet) {
+            width: 24px;
+            height: 24px;
+          }
         }
       }
     }
@@ -57,6 +80,10 @@
       @include type(13, 20);
       color: color('dark');
       border-radius: 8px;
+      text-decoration: none;
+      @include respond-max(tablet) {
+        display: none;
+      }
       &:hover {
         color: darken-color(color('dark'), 10%);
       }

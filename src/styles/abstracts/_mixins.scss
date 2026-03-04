@@ -166,7 +166,7 @@
   grid-template-columns: $sidebar-width 1fr;
   gap: $gap;
 
-  @include respond-max('md') {
+  @include respond-max(tablet) {
     grid-template-columns: 1fr;
   }
 }
@@ -179,7 +179,7 @@
   gap: spacing(4);
   min-height: 100vh;
 
-  @include respond-max('lg') {
+  @include respond-max(tablet) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr auto;
   }
