@@ -105,7 +105,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, 'index.html'),
-        about: path.resolve(__dirname, 'pages/about.html'),
+        // about: path.resolve(__dirname, 'pages/about.html'),
         // Примеры доступны только в dev режиме (не включаются в production сборку)
       },
       output: {

@@ -208,6 +208,8 @@
     @include type(16, 22);
     @include respond-max(tablet) {
       text-align: center;
+      padding-left: 0;
+      padding-right: 0;
       width: 100%;
     }
 

@@ -1,6 +1,6 @@
-# Frontend Project Template
+# Miracart Website
 
-Шаблон фронтенд-проекта на **Vite** с использованием **Vue Islands**, **SCSS** и **Handlebars**.
+Лендинг для компании Miracart - профессиональный подбор материалов для ремонта. Построен на **Vite** с использованием **Vue Islands**, **SCSS** и **Handlebars**.
 
 ## 🚀 Технологии
 
@@ -12,159 +12,176 @@
 - **SVG Sprite** - автоматическая сборка иконок
 - **Image Tools** - оптимизация и конвертация в WebP
 
+## � Технологии
+
+- **Vite 7** - быстрая сборка и HMR
+- **Vue 3** - интерактивные формы (Vue Islands)
+- **TypeScript** - типизация
+- **SCSS** - модульная архитектура стилей
+- **Handlebars** - шаблонизатор HTML
+- **SVG Sprite** - автоматическая сборка иконок
+- **Sharp** - конвертация изображений в WebP
+
 ## 📁 Структура проекта
 
 ```
-frontend/
-├── pages/              # HTML страницы (multi-page app)
+miracart_web/
+├── pages/              # Дополнительные страницы
 │   └── about.html
-├── partials/           # Handlebars шаблоны (компоненты HTML)
-│   ├── head.hbs
-│   ├── header.hbs
-│   ├── footer.hbs
-│   └── scripts.hbs
+├── partials/           # Handlebars компоненты
+│   ├── layout/         # Layout элементы
+│   │   ├── head.hbs
+│   │   ├── header.hbs
+│   │   ├── footer.hbs
+│   │   ├── scripts.hbs
+│   │   ├── modal-cookies.hbs
+│   │   └── svg-sprite.hbs
+│   └── sections/       # Секции лендинга
+│       ├── advantages.hbs
+│       ├── audience.hbs
+│       ├── contacts.hbs
+│       ├── faq.hbs
+│       ├── materials.hbs
+│       ├── roadmap.hbs
+│       ├── save-money.hbs
+│       ├── slogan.hbs
+│       └── why.hbs
 ├── src/
 │   ├── components/     # Vue компоненты
-│   │   ├── Counter.vue
-│   │   └── LoginForm.vue
-│   ├── islands/        # Адаптеры для монтирования Vue в HTML
-│   │   ├── Counter.ts
-│   │   └── LoginForm.ts
+│   │   ├── BigForm.vue        # Большая форма калькулятора
+│   │   ├── SmallForm.vue      # Компактная форма
+│   │   ├── RepairForm.vue     # Форма для ремонта
+│   │   └── SuccessModal.vue   # Модальное окно успеха
+│   ├── islands/        # Vue Islands адаптеры
+│   │   ├── BigForm.ts
+│   │   ├── SmallForm.ts
+│   │   └── RepairForm.ts
+│   ├── composables/    # Переиспользуемая логика
+│   │   ├── useForm.ts         # Работа с формами
+│   │   ├── useModal.ts        # Управление модальными окнами
+│   │   └── usePhoneMask.ts    # Маска телефона
 │   ├── icons/          # SVG иконки для спрайта
-│   │   ├── logo.svg
-│   │   ├── cart.svg
-│   │   └── arrow-right.svg
 │   ├── assets/         # Assets для обработки
-│   │   └── images/     # Изображения для WebP конвертации
-│   ├── styles/         # SCSS стили
-│   │   ├── _variables.scss
-│   │   ├── _reset.scss
-│   │   ├── _base.scss
-│   │   ├── _components.scss
+│   │   └── images/
+│   ├── styles/         # SCSS архитектура
+│   │   ├── abstracts/  # Переменные, миксины, функции
+│   │   ├── animations/ # Анимации
+│   │   ├── base/       # Базовые стили, reset, шрифты
+│   │   ├── components/ # Компоненты и секции
 │   │   └── app.scss
-│   ├── main.ts         # Точка входа
-│   └── vite-env.d.ts   # TypeScript декларации
+│   ├── utils/          # Утилиты
+│   ├── config/         # Конфигурация API
+│   ├── data/           # Mock данные
+│   └── main.ts
 ├── public/             # Статические файлы
 │   ├── fonts/          # Шрифты
-│   └── images/         # Статические изображения
+│   └── images/         # Изображения (автоконвертация в WebP)
+├── scripts/            # Build скрипты
+│   ├── generate-svg-sprite.js
+│   └── convert-images.js
+├── examples/           # Демо-страницы компонентов
+├── docs/               # Документация
 ├── index.html          # Главная страница
-├── vite.config.ts      # Конфигурация Vite
-├── tsconfig.json       # Конфигурация TypeScript
+├── vite.config.ts
+├── tsconfig.json
 └── package.json
-
 ```
 
 ## 🏝️ Vue Islands
 
-Vue Islands позволяет использовать Vue компоненты на статических HTML страницах без необходимости SPA.
+Vue Islands позволяет использовать интерактивные Vue компоненты на статическом HTML лендинге.
 
-### Как использовать:
+### Формы в проекте:
 
-1. Создайте Vue компонент в `src/components/`
-2. Создайте island-адаптер в `src/islands/`
-3. Используйте в HTML через data-атрибуты:
+**BigForm** - Полный калькулятор стоимости материалов:
 
 ```html
-<div data-vue-island="Counter" data-props='{"start":5}'></div>
+<div
+  data-vue-island="BigForm"
+  data-props='{"apiUrl":"/api/calculate","policyUrl":"/policy"}'
+></div>
+```
+
+**SmallForm** - Компактная форма заявки:
+
+```html
+<div data-vue-island="SmallForm" data-props='{"apiUrl":"/api/contact"}'></div>
+```
+
+**RepairForm** - Форма для заявки на ремонт:
+
+```html
+<div data-vue-island="RepairForm" data-props='{"apiUrl":"/api/repair"}'></div>
 ```
 
 ## 📦 Установка
 
 ```bash
 npm install
-cp .env.example .env.local  # Настройте переменные окружения
 ```
 
 ## 🛠️ Разработка
 
 ```bash
-# Стандартный dev сервер
 npm run dev
-
-# Dev сервер + автоматическая конвертация изображений в WebP
-npm run dev:watch
 ```
 
-Откроется на [http://localhost:3000](http://localhost:3000)
+Сервер запустится на `http://localhost:3001/` (или другом свободном порту)
 
-**Dev режим использует моки** - не нужен работающий Laravel сервер!
+**Что происходит при запуске:**
+
+- ✅ Автоматическая генерация SVG спрайта из `src/icons/`
+- ✅ Watch за изменениями SVG иконок
+- ✅ Автоматическая конвертация JPG/PNG → WebP из `public/images/`
+- ✅ Watch за новыми изображениями
+- ✅ Hot Module Replacement (HMR) для Vue и стилей
+
+### Доступные команды:
+
+```bash
+npm run dev          # Dev-сервер с watch за всем (рекомендуется)
+npm run dev:once     # Dev-сервер с единоразовой сборкой
+npm run build        # Production сборка
+npm run preview      # Превью production сборки
+npm run format       # Форматирование кода (Prettier)
+```
 
 ### 🖼️ Автоматическая конвертация изображений в WebP
 
-Проект автоматически конвертирует JPG/PNG в WebP (как в Gulp):
+При `npm run dev` автоматически запускается watch за изображениями в `public/images/`.
+
+**Как работает:**
+
+1. Положите JPG/PNG в `public/images/`
+2. Скрипт автоматически создаст `.webp` версию
+3. При изменении исходника `.webp` обновится автоматически
 
 ```bash
-# Dev с автоконвертацией (рекомендуется)
-npm run dev:watch
+# Запуск dev-сервера с watch (рекомендуется)
+npm run dev
 
-# Конвертировать все изображения единоразово
+# Только конвертация всех изображений
 npm run images:convert
 
 # Только watch для изображений
 npm run images:watch
+
+# Только генерация SVG спрайта
+npm run svg:generate
+
+# Watch за SVG иконками
+npm run svg:watch
 ```
-
-**Как использовать:**
-
-1. Положите JPG/PNG в `public/images/`
-2. Скрипт автоматически создаст `.webp` версию
-3. Используйте в HTML: `<img src="/images/photo.webp">`
 
 **Преимущества:**
 
-- ✅ До 70% экономии размера
-- ✅ Автоматический watch как в Gulp
-- ✅ Показывает статистику сжатия
-- ✅ Конвертация перед production билдом
+- ✅ До 70% экономии размера файлов
+- ✅ Автоматический watch режим
+- ✅ Статистика сжатия для каждого файла
+- ✅ Пропуск уже существующих WebP
+- ✅ Автоматическая конвертация перед production билдом
 
-## 📡 Работа с API и Laravel
-
-Проект настроен для работы с Laravel API:
-
-- **Development**: Используются mock данные (без Laravel)
-- **Production**: Реальный Laravel API
-
-### Быстрый старт с API:
-
-1. **Настройте `.env.local`:**
-
-   ```env
-   VITE_API_URL=http://localhost:8000/api
-   ```
-
-2. **Используйте в компонентах:**
-
-   ```typescript
-   import { authApi } from './services/api';
-
-   const response = await authApi.login({ email, password });
-   ```
-
-3. **Или используйте composable:**
-
-   ```typescript
-   import { useForm } from './composables/useForm';
-
-   const { formData, handleSubmit } = useForm({ email: '', password: '' });
-   ```
-
-📚 **Полная документация:** [docs/API-INTEGRATION.md](docs/API-INTEGRATION.md)
-
-## 🏗️ Сборка
-
-```bash
-npm install
-```
-
-## 🛠️ Разработка
-
-```bash
-npm run dev
-```
-
-Откроется на [http://localhost:3000](http://localhost:3000)
-
-## 🏗️ Сборка
+## 🏗️ Production сборка
 
 ```bash
 npm run build
@@ -174,126 +191,256 @@ npm run build
 
 **Автоматически выполняется:**
 
+- ✅ Генерация SVG спрайта
 - ✅ Конвертация всех JPG/PNG → WebP
-- ✅ Минификация HTML, CSS, JS
+- ✅ Минификация HTML через Lightning CSS
+- ✅ Минификация и tree-shaking CSS/JS
 - ✅ Оптимизация изображений
-- ✅ Сборка SVG спрайта
+- ✅ Форматирование HTML в dist/
 
-## 👀 Превью продакшн сборки
+## 👀 Превью production сборки
 
 ```bash
 npm run preview
 ```
 
-## 🎨 Продвинутая SCSS архитектура
+## 🎨 SCSS архитектура
 
-Проект использует мощную модульную систему стилей:
+Проект использует модульную архитектуру стилей с функциями и миксинами.
 
 ### Структура
 
 ```
 src/styles/
-├── _variables.scss   # Дизайн-система (цвета, spacing, breakpoints)
-├── _functions.scss   # SCSS функции для получения значений
-├── _mixins.scss      # Переиспользуемые миксины
-├── _reset.scss       # CSS Reset
-├── _base.scss        # Базовые стили
-├── _components.scss  # Компоненты
-├── _utilities.scss   # Утилитарные классы
-├── _animations.scss  # Анимации
-└── app.scss          # Главный файл
+├── abstracts/          # Система дизайна
+│   ├── _variables.scss # Цвета, spacing, breakpoints
+│   ├── _functions.scss # Функции для доступа к переменным
+│   ├── _mixins.scss    # Переиспользуемые миксины
+│   └── _component-mixins.scss
+├── base/               # Базовые стили
+│   ├── _reset.scss
+│   ├── _base.scss
+│   └── _fonts.scss
+├── components/         # UI компоненты
+│   ├── _modal.scss
+│   ├── _cards.scss
+│   ├── _spinner.scss
+│   └── sections/       # Секции лендинга
+│       ├── _advantages.scss
+│       ├── _contacts.scss
+│       ├── _faq.scss
+│       └── ...
+├── animations/
+│   └── _animations.scss
+└── app.scss            # Главный файл
 ```
 
-### Быстрые примеры
+### Примеры использования
 
-**Использование функций:**
+**Функции дизайн-системы:**
 
 ```scss
 .element {
-  color: color('primary');
-  padding: spacing(4);
-  border-radius: radius('md');
+  color: color('primary'); // Цвета из палитры
+  padding: spacing(4); // Spacing из системы
+  border-radius: radius('md'); // Радиусы
+  font-weight: font-weight('bold'); // Веса шрифтов
+  @include type(16, 24); // Размер и высота строки
 }
 ```
 
-**Миксины:**
+**Адаптивные миксины:**
 
 ```scss
 .box {
-  @include flex-center;
-  @include card-shadow;
+  @include flex-center; // display: flex + центрирование
+  @include grid(12, spacing(4)); // 12-колоночный grid
+
+  @include respond-max('tablet') {
+    // Media query для tablet
+    @include flex-column;
+  }
 
   @include respond-to('md') {
+    // Breakpoint md и выше
     padding: spacing(8);
   }
 }
 ```
 
-**Утилиты в HTML:**
+**Grid система:**
+
+````scss
+.container {
+  @include grid(12, spacing(6));     // 12 колонок с gap
+}
+
+.item {
+  @include col-span(1, 8);           // Занимает колонки от 1 до 8
+}
+
+📚 **Документация:** [docs/SCSS_SNIPPETS_CHEATSHEET.md](docs/SCSS_SNIPPETS_CHEATSHEET.md)
+
+## 🎨 SVG Sprite и иконки
+
+Все SVG иконки из `src/icons/` автоматически собираются в спрайт при `npm run dev`.
+
+**Использование в HTML:**
 
 ```html
-<div class="d-flex justify-between p-4 shadow-md rounded-lg"></div>
-```
-
-📚 **Полная документация:** [docs/SCSS-GUIDE.md](docs/SCSS-GUIDE.md)
-🚀 **Быстрый старт:** [docs/SCSS-QUICKSTART.md](docs/SCSS-QUICKSTART.md)
-
-## 🎨 Изображения и иконки
-
-### SVG Спрайт
-
-Все SVG иконки из `src/icons/` автоматически собираются в спрайт:
-
-```html
-<!-- В HTML -->
-<svg class="icon">
-  <use xlink:href="#icon-cart"></use>
+<svg width="24" height="24">
+  <use href="#icon-cart" fill="currentColor"></use>
 </svg>
+````
 
-<!-- В SCSS -->
-.icon { width: 24px; height: 24px; fill: currentColor; }
-```
+**Доступные иконки:**
 
-### Оптимизация изображений (WebP)
+- icon-logo
+- icon-cart
+- icon-phone
+- icon-mail
+- icon-arrow-right
+- icon-close
+- icon-check
+- icon-drop
+- icon-max
+- icon-not
+- и другие...
 
-**Для обработки:** `src/assets/images/` → импорт в коде
+**При изменении иконок:**
 
-```typescript
-import photo from '@images/photo.jpg?format=webp&quality=80';
-```
+- В dev режиме спрайт автоматически пересобирается
+- Создается inline partial `svg-sprite.hbs` для вставки в HTML
+- Генерируется файл `public/images/sprite.svg`
 
-**Статические:** `public/images/` → прямой путь
+## 📸 Изображения
+
+### Структура и использование
+
+**Статические изображения:** `public/images/`
 
 ```html
-<img src="/images/banner.jpg" alt="Banner" />
+<img src="/images/photo.webp" alt="Photo" loading="lazy" />
 ```
 
-### Структура
+**Picture элемент для адаптивности:**
 
+```html
+<picture>
+  <source
+    srcset="/images/banner-mob@2x.webp 2x, /images/banner-mob.webp 1x"
+    media="(max-width: 1240px)"
+    type="image/webp"
+  />
+  <source
+    srcset="/images/banner@2x.webp 2x, /images/banner.webp 1x"
+    type="image/webp"
+  />
+  <img src="/images/banner.webp" alt="Banner" loading="lazy" />
+</picture>
 ```
-src/
-├── icons/            # SVG иконки → спрайт
-└── assets/
-    └── images/       # Изображения для обработки (WebP)
 
-public/
-├── fonts/            # Шрифты
-└── images/           # Статические изображения
-```
+### Конвенция именования:
 
-📚 **Полная документация:** [docs/IMAGES_AND_ICONS.md](docs/IMAGES_AND_ICONS.md)
-🎨 **Примеры:** [http://localhost:3002/examples/images.html](http://localhost:3002/examples/images.html)
+- `image.webp` - обычная версия
+- `image@2x.webp` - retina версия (2x)
+- `image-mob.webp` - мобильная версия
+- `image-mob@2x.webp` - мобильная retina
 
-## 📄 Шаблоны Handlebars
+📚 **Документация:** [docs/IMAGES_CHEATSHEET.md](docs/IMAGES_CHEATSHEET.md)
 
-Используйте partials для переиспользуемых частей HTML:
+## 📄 Handlebars шаблоны
+
+Проект использует Handlebars для разделения HTML на переиспользуемые компоненты.
+
+### Layout компоненты
 
 ```handlebars
-{{> head title="Заголовок страницы"}}
-{{> header}}
-{{> footer}}
-{{> scripts}}
+{{!-- index.html --}}
+<!DOCTYPE html>
+<html lang="ru">
+  {{> layout/head title="Miracart - Подбор материалов для ремонта"}}
+  <body>
+    {{> layout/svg-sprite}}
+    {{> layout/header}}
+
+    <main>
+      {{> sections/slogan}}
+      {{> sections/advantages}}
+      {{> sections/materials}}
+      {{> sections/save-money}}
+      {{> sections/roadmap}}
+      {{> sections/why}}
+      {{> sections/audience}}
+      {{> sections/faq}}
+      {{> sections/contacts}}
+    </main>
+
+    {{> layout/footer}}
+    {{> layout/modal-cookies}}
+    {{> layout/scripts}}
+  </body>
+</html>
 ```
+
+### Передача данных в partials
+
+```handlebars
+{{> layout/head
+  title="Заголовок страницы"
+  description="Описание"
+}}
+```
+
+## 🧩 Composables
+
+Переиспользуемая логика для Vue компонентов:
+
+### useForm
+
+Управление состоянием формы, валидация, отправка:
+
+```typescript
+const { formData, state, errors, handleSubmit } = useForm({
+  name: '',
+  phone: '+7',
+  email: '',
+});
+```
+
+### useModal
+
+Управление модальными окнами с анимациями:
+
+```typescript
+const { isOpen, isShown, isClosing, open, close } = useModal();
+```
+
+### usePhoneMask
+
+Маска для телефонного номера:
+
+```typescript
+const { phone, handleInput, isValid, getDigits } = usePhoneMask('+7');
+```
+
+## 📚 Документация
+
+- [SCSS Snippets Cheatsheet](docs/SCSS_SNIPPETS_CHEATSHEET.md) - Готовые SCSS сниппеты
+- [HTML Snippets Cheatsheet](docs/HTML_SNIPPETS_CHEATSHEET.md) - Готовые HTML компоненты
+- [Images Cheatsheet](docs/IMAGES_CHEATSHEET.md) - Работа с изображениями
+- [Utilities Guide](docs/UTILITIES_GUIDE.md) - Утилитарные классы
+- [Floating Inputs](docs/FLOATING_INPUTS.md) - Floating label инпуты
+
+## 🌐 Примеры компонентов
+
+Запустите dev-сервер и откройте:
+
+- `/examples/` - Список всех примеров
+- `/examples/forms.html` - Формы
+- `/examples/images.html` - Изображения
+- `/examples/modal.html` - Модальные окна
+- `/examples/utilities.html` - Утилитарные классы
 
 ## 📝 Лицензия
 
