@@ -8,6 +8,12 @@
 
 .advantages {
   margin: spacing(20) 0;
+  @include respond-max(tablet) {
+    margin: spacing(10) 0;
+    .container {
+      padding: 0;
+    }
+  }
 
   &__container {
     background: color('dark');
@@ -15,12 +21,20 @@
     overflow: hidden;
     padding: spacing(20);
     border-radius: 22px;
+    @include respond-max('tablet') {
+      padding: spacing(10) spacing(5);
+      border-radius: 0;
+    }
   }
 
   &__title {
     color: color('white');
     text-align: center;
     margin-bottom: spacing(10);
+
+    @include respond-max(tablet) {
+      margin-bottom: spacing(6);
+    }
   }
 
   &__title-highlight {
@@ -40,6 +54,10 @@
       display: block;
       background-size: contain;
       background-repeat: no-repeat;
+      @include respond-max(tablet) {
+        width: 124px;
+        height: 45px;
+      }
       // z-index: -1;
     }
   }
@@ -55,15 +73,32 @@
     }
   }
 
+  &__card {
+    @include respond-max(tablet) {
+      display: grid;
+      grid-template-columns: px2rem(90) 1fr;
+      gap: spacing(4);
+    }
+  }
+
   &__icon-wrap {
     position: relative;
-    width: 100px;
-    height: 72px;
+    width: px2rem(100);
+    height: px2rem(72);
     margin-bottom: spacing(4);
     position: relative;
+    @include respond-max(tablet) {
+      width: px2rem(90);
+      height: px2rem(64);
+      margin: 0;
+    }
     & img {
-      width: 72px;
-      height: 72px;
+      width: px2rem(72);
+      height: px2rem(72);
+      @include respond-max(tablet) {
+        width: px2rem(64);
+        height: px2rem(64);
+      }
     }
   }
 
@@ -80,21 +115,23 @@
     font-weight: font-weight('bold');
     color: #ffffff;
     margin-bottom: spacing(4);
+    &-highlight {
+      color: color('primary');
+    }
 
     @include respond-max('tablet') {
       @include type(18, 26);
-      margin-bottom: spacing(3);
+      margin-bottom: 0;
+      align-self: end;
     }
-  }
-
-  &__highlight {
-    color: #ffb800;
-    font-weight: font-weight('extrabold');
   }
 
   &__card-text {
     color: rgba(255, 255, 255, 0.7);
     @include type(16, 22);
     margin: 0;
+    @include respond-max(tablet) {
+      grid-column: 2/2;
+    }
   }
 }

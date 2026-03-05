@@ -163,7 +163,7 @@
               placeholder=" "
               @blur="validateField('name')"
             />
-            <label class="calc-materials__label" for="calc-name">Имя</label>
+            <label for="calc-name">Имя</label>
           </div>
           <span class="form-error" v-if="errors.name">{{ errors.name }}</span>
         </div>
@@ -182,9 +182,7 @@
               @input="handlePhoneInput"
               @blur="validateField('phone')"
             />
-            <label class="calc-materials__label" for="calc-phone">
-              Ваш телефон
-            </label>
+            <label for="calc-phone"> Ваш телефон </label>
           </div>
           <span class="form-error" v-if="errors.phone">{{ errors.phone }}</span>
         </div>

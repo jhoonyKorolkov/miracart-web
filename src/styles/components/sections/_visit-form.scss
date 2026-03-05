@@ -5,6 +5,9 @@
 
 .visit-form {
   margin: spacing(20) 0;
+  @include respond-max(tablet) {
+    margin: spacing(10) 0;
+  }
   &__inner {
     background-color: color('primary');
     padding: px2rem(60);
@@ -15,7 +18,7 @@
     grid-gap: 60px;
     @include respond-max('tablet') {
       display: block;
-      padding: spacing(12);
+      padding: spacing(10);
     }
     &::before {
       content: '';
@@ -25,6 +28,10 @@
       background-position: center;
       opacity: 0.6; // <-- регулируй прозрачность
       z-index: 0;
+
+      @include respond-max(tablet) {
+        background-image: url('/images/bg.svg');
+      }
     }
   }
 
@@ -68,6 +75,7 @@
     grid-gap: spacing(6);
     @include respond-max(tablet) {
       grid-template-columns: 1fr;
+      margin-top: spacing(6);
     }
   }
 

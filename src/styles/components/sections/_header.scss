@@ -14,10 +14,6 @@
   &__logo {
     & .icon {
       color: color('dark');
-      @include respond-max(tablet) {
-        width: 129px;
-        height: 24px;
-      }
     }
   }
   &__box {

@@ -69,6 +69,7 @@
       border-radius: radius('full');
       background: color('gray', 800);
       position: relative;
+      text-decoration: none;
       @include transition(background);
 
       &:hover {
@@ -98,6 +99,7 @@
       font-weight: font-weight('extrabold');
       text-transform: uppercase;
       color: color('white');
+      text-decoration: none;
       @include transition(color);
 
       &:hover {
@@ -117,6 +119,7 @@
     &-link {
       font-weight: font-weight('light');
       color: color('white');
+      text-decoration: none;
       @include transition(color);
 
       &:hover {

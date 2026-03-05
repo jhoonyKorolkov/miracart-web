@@ -4,13 +4,16 @@
 
 .why {
   margin: spacing(20) 0;
+  @include respond-max(tablet) {
+    margin: spacing(10) 0;
+  }
   &__grid {
     @include grid(12, spacing(6));
 
     @include respond-max('tablet') {
       display: flex;
-      flex-direction: column;
-      gap: spacing(10);
+      flex-direction: column-reverse;
+      gap: spacing(6);
     }
   }
 
@@ -22,6 +25,9 @@
     &-list {
       @include flex-column;
       gap: spacing(10);
+      @include respond-max(tablet) {
+        gap: spacing(6);
+      }
     }
     &-item-title {
       margin-bottom: spacing(2);
@@ -34,6 +40,9 @@
 
   &__title {
     margin-bottom: spacing(10);
+    @include respond-max(tablet) {
+      margin-bottom: spacing(6);
+    }
   }
 
   &__image {
@@ -52,6 +61,9 @@
       left: 50%;
       transform: translateX(-50%);
       color: color('primary');
+      @include respond-max(tablet) {
+        top: px2rem(40);
+      }
     }
 
     img {

@@ -4,8 +4,14 @@
 
 .audience {
   margin: spacing(20) 0;
+  @include respond-max(tablet) {
+    margin: spacing(10) 0;
+  }
   &__title {
     margin-bottom: spacing(10);
+    @include respond-max(tablet) {
+      margin-bottom: spacing(6);
+    }
   }
   &__list {
     @include grid-auto-fit(267px, spacing(4));
@@ -20,18 +26,36 @@
     padding: spacing(6);
     border-radius: 22px;
     overflow: hidden;
+    @include respond-max(tablet) {
+      padding: spacing(8) spacing(10);
+      display: grid;
+      grid-template-columns: px2rem(56) 1fr;
+      gap: spacing(4);
+      align-items: center;
+    }
     & img {
       display: block;
       margin-bottom: spacing(4);
       width: px2rem(80);
       height: px2rem(80);
+      @include respond-max(tablet) {
+        margin-bottom: 0;
+        width: px2rem(56);
+        height: px2rem(56);
+      }
     }
     &-title {
       margin-bottom: spacing(2);
+      @include respond-max(tablet) {
+        margin-bottom: 0;
+      }
     }
     &-text {
       font-weight: font-weight('light');
       @include type(16, 22);
+      @include respond-max(tablet) {
+        grid-column: 1/3;
+      }
     }
   }
 }
