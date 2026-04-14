@@ -120,7 +120,7 @@
       }
 
       & .calc-materials__item-icon {
-        :deep(svg) {
+        svg {
           fill: color('white');
           stroke: color('white');
 

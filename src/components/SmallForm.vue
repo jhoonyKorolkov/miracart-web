@@ -7,10 +7,14 @@
         </h4>
         <div class="visit-form__author">
           <img
+            v-if="props.user?.url"
             :src="props.user?.url"
             :alt="props.user?.name"
             class="visit-form__author-photo"
           />
+          <div v-else class="visit-form__author-fallback" aria-hidden="true">
+            {{ authorInitials }}
+          </div>
           <div class="visit-form__author-meta">
             <p class="visit-form__author-text">
               Мы перезвоним в течение 15 минут. Наш эксперт проконсультирует по
@@ -102,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { useForm } from '../composables/useForm';
 import { usePhoneMask } from '../composables/usePhoneMask';
 import { useModal } from '../composables/useModal';
@@ -123,6 +127,20 @@ const props = withDefaults(defineProps<Props>(), {
     job: '',
   }),
   policyUrl: '/privacy-policy',
+});
+
+const authorInitials = computed(() => {
+  const name = props.user?.name?.trim();
+
+  if (!name) {
+    return 'MB';
+  }
+
+  return name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
 });
 
 const {

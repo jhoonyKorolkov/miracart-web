@@ -46,7 +46,6 @@ export default defineConfig({
           if (req.url && /^\/about\.html$/.test(req.url)) {
             req.url = `/pages${req.url}`;
           }
-          // Примеры доступны по путям /examples/*.html (без перенаправления)
           next();
         });
       },
@@ -105,8 +104,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, 'index.html'),
-        // about: path.resolve(__dirname, 'pages/about.html'),
-        // Примеры доступны только в dev режиме (не включаются в production сборку)
       },
       output: {
         // Оптимизация для продакшена

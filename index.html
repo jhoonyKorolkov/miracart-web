@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <!-- prettier-ignore -->
-    {{> layout/head title="Главная" description="Подберём, закупим и доставим товары для вашего ремонта и обустройства  без переплат и хаоса"}}
+    {{> layout/head title="Главная" description="Подберём, закупим и доставим товары для вашего ремонта и обустройства без переплат и хаоса"}}
   </head>
   <body>
     {{> layout/svg-sprite}}
@@ -17,7 +17,7 @@
       <section
         class="visit-form"
         data-vue-island="SmallForm"
-        data-props='{"apiUrl": "/api/contact", "user": {"url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg", "name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
+        data-props='{"apiUrl": "/api/contact", "user": {"name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
       ></section>
       {{> sections/audience}}
       <!---->
@@ -27,6 +27,7 @@
       <!---->
       {{> sections/slogan}}
       <section
+        id="calculator"
         class="calc-materials"
         data-vue-island="BigForm"
         data-props='{
@@ -96,7 +97,7 @@
       <section
         class="repair-form"
         data-vue-island="RepairForm"
-        data-props='{"apiUrl": "/api/contact", "user": {"url": "https://i.kym-cdn.com/entries/icons/original/000/016/546/hidethepainharold.jpg", "name": "Виталина Бакланова", "job": "руководитель проектов"},"policyUrl": "/privacy-policy" }'
+        data-props='{"apiUrl": "/api/contact", "policyUrl": "/privacy-policy" }'
       ></section>
       <!---->
       {{> sections/faq}}
